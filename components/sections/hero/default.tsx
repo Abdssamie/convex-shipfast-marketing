@@ -12,6 +12,7 @@ import Glow from "../../ui/glow";
 import { Mockup, MockupFrame } from "../../ui/mockup";
 import Screenshot from "../../ui/screenshot";
 import { Section } from "../../ui/section";
+import { Terminal, TypingAnimation } from "../../ui/terminal";
 
 interface HeroButtonProps {
   href: string;
@@ -32,7 +33,7 @@ interface HeroProps {
 
 export default function Hero({
   title,
-  description = "The open-source, production-ready SaaS starter. Built with Next.js, Convex, and TypeScript. Inspect the code, self-host, or fork it freely before committing to Pro.",
+  description = "The friendly SaaS starter. Build and ship faster with Next.js, Convex, and TypeScript.",
   mockup = (
     <Screenshot
       srcLight="/dashboard-light.png"
@@ -66,19 +67,13 @@ export default function Hero({
       variant: "default",
       icon: <RocketIcon className="mr-2 size-4" />,
     },
-    {
-      href: siteConfig.links.github,
-      text: "Starred by 1.2k on GitHub",
-      variant: "glow",
-      icon: <Github className="mr-2 size-4" />,
-    },
   ],
   className,
 }: HeroProps) {
   return (
     <Section
       className={cn(
-        "fade-bottom overflow-hidden pt-8 pb-0 sm:pt-12 sm:pb-0 md:pt-16 md:pb-0",
+        "fade-bottom overflow-hidden pt-24 pb-0 sm:pt-32 sm:pb-0 md:pt-40 md:pb-0",
         className,
       )}
     >
@@ -119,9 +114,11 @@ export default function Hero({
                   </Button>
                 ))}
               </div>
-              <p className="text-muted-foreground text-sm font-medium">
-                Start building for free. Upgrade when you scale.
-              </p>
+              <Terminal copyCommand="npx create-fluxkit-app@latest" className="mt-4 pointer-events-auto w-full max-w-sm">
+                <TypingAnimation className="text-emerald-400 font-semibold delay-0 font-mono tracking-tight text-sm" duration={40}>
+                  npx create-fluxkit-app@latest
+                </TypingAnimation>
+              </Terminal>
             </div>
           )}
           {mockup !== false && (
