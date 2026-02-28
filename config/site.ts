@@ -1,30 +1,29 @@
 export const siteConfig = {
-  name: "Launch UI",
-  url: "https://launchuicomponents.com",
-  getStartedUrl:
-    "https://launchuicomponents.com/docs/getting-started/introduction",
-  ogImage: "https://launchuicomponents.com/og.jpg",
+  name: "FluxKit",
+  url: "https://fluxkit.dev",
+  getStartedUrl: "https://github.com/fluxkit/fluxkit",
+  docsUrl: "https://docs.fluxkit.dev",
+  ogImage: "https://fluxkit.dev/og.jpg",
   description:
-    "Landing page components built with React, Shadcn/ui and Tailwind that will make your website feel premium.",
+    "Production-ready SaaS starter kit with authentication, billing, teams, and real-time features. Built with Next.js, Convex, and TypeScript.",
   links: {
-    twitter: "https://twitter.com/mikolajdobrucki",
-    github: "https://github.com/launch-ui/launch-ui",
-    email: "mailto:contact@mikolajdobrucki.com",
+    twitter: "https://twitter.com/fluxkit",
+    github: "https://github.com/fluxkit/fluxkit",
+    discord: "https://discord.gg/fluxkit",
+    email: "mailto:hello@fluxkit.dev",
   },
   pricing: {
-    pro: "https://launchui.lemonsqueezy.com/buy/b4798c68-c858-4c34-860b-069b5a0d6c4e",
-    team: "https://launchui.lemonsqueezy.com/buy/130d8cfe-e123-464b-9f67-c74c5fedfb45",
+    free: "https://github.com/fluxkit/fluxkit",
+    pro: "https://buy.stripe.com/fluxkit-pro", // Update with actual Stripe link
+    proPolar: "https://polar.sh/fluxkit/products/pro", // Update with actual Polar link
   },
   stats: {
-    figma: 7693,
-    github: 1829,
-    cli: 16493,
-    total: "26.1k+",
-    updated: "13 Jan 2026",
-    sections: 74,
-    illustrations: 23,
-    animations: 15,
-    templates: 7,
+    github: 0, // Will update as stars grow
+    features: 50,
+    components: 30,
+    integrations: 8,
+    total: "50+",
+    updated: "Feb 2026",
   },
 };
 

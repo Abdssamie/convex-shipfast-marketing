@@ -1,4 +1,5 @@
 import CTA from "../components/sections/cta/default";
+import BuildVsBuy from "../components/sections/comparison/build-vs-buy";
 import FAQ from "../components/sections/faq/default";
 import Footer from "../components/sections/footer/default";
 import Hero from "../components/sections/hero/default";
@@ -7,6 +8,7 @@ import Logos from "../components/sections/logos/default";
 import Navbar from "../components/sections/navbar/default";
 import Pricing from "../components/sections/pricing/default";
 import Stats from "../components/sections/stats/default";
+import Testimonials from "../components/sections/testimonials/default";
 import { LayoutLines } from "../components/ui/layout-lines";
 
 export default function Home() {
@@ -17,8 +19,10 @@ export default function Home() {
       <Hero />
       <Logos />
       <Items />
+      <BuildVsBuy />
       <Stats />
       <Pricing />
+      <Testimonials />
       <FAQ />
       <CTA />
       <Footer />

@@ -18,17 +18,24 @@ interface CTAButtonProps {
 
 interface CTAProps {
   title?: string;
+  description?: string;
   buttons?: CTAButtonProps[] | false;
   className?: string;
 }
 
 export default function CTA({
-  title = "Start building",
+  title = "Start Building Your SaaS Today",
+  description = "Join developers who chose FluxKit to launch faster. Get started with the free version or unlock everything with Pro.",
   buttons = [
     {
-      href: siteConfig.getStartedUrl,
-      text: "Get Started",
+      href: siteConfig.pricing.free,
+      text: "Get Started Free",
       variant: "default",
+    },
+    {
+      href: "/#pricing",
+      text: "View Pricing",
+      variant: "outline",
     },
   ],
   className,
@@ -39,6 +46,11 @@ export default function CTA({
         <h2 className="max-w-[640px] text-3xl leading-tight font-semibold sm:text-5xl sm:leading-tight">
           {title}
         </h2>
+        {description && (
+          <p className="text-muted-foreground max-w-[560px] text-lg">
+            {description}
+          </p>
+        )}
         {buttons !== false && buttons.length > 0 && (
           <div className="flex justify-center gap-4">
             {buttons.map((button, index) => (

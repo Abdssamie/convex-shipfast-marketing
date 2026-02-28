@@ -1,5 +1,5 @@
 import { type VariantProps } from "class-variance-authority";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRightIcon, RocketIcon, StarIcon } from "lucide-react";
 import { ReactNode } from "react";
 
 import { siteConfig } from "@/config/site";
@@ -31,38 +31,39 @@ interface HeroProps {
 }
 
 export default function Hero({
-  title = "Give your big idea the design it deserves",
-  description = "Professionally designed blocks and templates built with React, Shadcn/ui and Tailwind that will help your product stand out.",
+  title,
+  description = "The open-source, production-ready SaaS starter. Built with Next.js, Convex, and TypeScript. Inspect the code, self-host, or fork it freely before committing to Pro.",
   mockup = (
     <Screenshot
       srcLight="/dashboard-light.png"
       srcDark="/dashboard-dark.png"
-      alt="Launch UI app screenshot"
+      alt="FluxKit dashboard screenshot"
       width={1248}
       height={765}
       className="w-full"
     />
   ),
   badge = (
-    <Badge variant="outline" className="animate-appear">
-      <span className="text-muted-foreground">
-        New version of Launch UI is out!
+    <Badge
+      variant="outline"
+      className="animate-appear px-4 py-0 text-sm group hover:border-primary/50 cursor-pointer transition-colors"
+    >
+      <span className="text-muted-foreground font-medium">
+        New: Convex Real-Time DB • Stripe Billing • Shadcn UI
       </span>
-      <a href={siteConfig.getStartedUrl} className="flex items-center gap-1">
-        Get started
-        <ArrowRightIcon className="size-3" />
-      </a>
+      <ArrowRightIcon className="text-muted-foreground ml-2 size-4 transition-transform group-hover:translate-x-0.5" />
     </Badge>
   ),
   buttons = [
     {
-      href: siteConfig.getStartedUrl,
-      text: "Get Started",
+      href: siteConfig.pricing.free,
+      text: "Get Started Free",
       variant: "default",
+      icon: <RocketIcon className="mr-2 size-4" />,
     },
     {
       href: siteConfig.links.github,
-      text: "Github",
+      text: "Starred by 1.2k on GitHub",
       variant: "glow",
       icon: <Github className="mr-2 size-4" />,
     },
@@ -72,39 +73,54 @@ export default function Hero({
   return (
     <Section
       className={cn(
-        "fade-bottom overflow-hidden pb-0 sm:pb-0 md:pb-0",
+        "fade-bottom overflow-hidden pt-8 pb-0 sm:pt-12 sm:pb-0 md:pt-16 md:pb-0",
         className,
       )}
     >
-      <div className="max-w-container mx-auto flex flex-col gap-12 pt-16 sm:gap-24">
-        <div className="flex flex-col items-center gap-6 text-center sm:gap-12">
+      <div className="max-w-container mx-auto flex flex-col gap-12 pt-4 sm:gap-24">
+        <div className="flex flex-col items-center gap-5 text-center sm:gap-8">
           {badge !== false && badge}
-          <h1 className="animate-appear from-foreground to-foreground dark:to-muted-foreground relative z-10 inline-block bg-linear-to-r bg-clip-text text-4xl leading-tight font-semibold text-balance text-transparent drop-shadow-2xl sm:text-6xl sm:leading-tight md:text-8xl md:leading-tight">
-            {title}
+          <h1 className="animate-appear relative z-10 text-4xl leading-tight font-semibold text-balance drop-shadow-2xl sm:text-6xl sm:leading-tight md:text-8xl md:leading-tight">
+            {title ? (
+              title
+            ) : (
+              <>
+                <span className="text-foreground">Skip the Boilerplate </span>
+                <br className="hidden md:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-br from-orange-600 to-red-300 drop-shadow-md">
+                  Ship This Weekend
+                </span>
+              </>
+            )}
           </h1>
-          <p className="text-md animate-appear text-muted-foreground relative z-10 max-w-[740px] font-medium text-balance opacity-0 delay-100 sm:text-xl">
+          <p className="text-md animate-appear text-slate-500 dark:text-slate-300 relative z-10 max-w-[740px] font-medium text-balance opacity-0 delay-100 sm:text-xl leading-relaxed">
             {description}
           </p>
           {buttons !== false && buttons.length > 0 && (
-            <div className="animate-appear relative z-10 flex justify-center gap-4 opacity-0 delay-300">
-              {buttons.map((button, index) => (
-                <Button
-                  key={index}
-                  variant={button.variant || "default"}
-                  size="lg"
-                  asChild
-                >
-                  <a href={button.href}>
-                    {button.icon}
-                    {button.text}
-                    {button.iconRight}
-                  </a>
-                </Button>
-              ))}
+            <div className="animate-appear relative z-10 flex flex-col items-center gap-3 opacity-0 delay-300">
+              <div className="flex justify-center gap-4">
+                {buttons.map((button, index) => (
+                  <Button
+                    key={index}
+                    variant={button.variant || "default"}
+                    size="lg"
+                    asChild
+                  >
+                    <a href={button.href}>
+                      {button.icon}
+                      {button.text}
+                      {button.iconRight}
+                    </a>
+                  </Button>
+                ))}
+              </div>
+              <p className="text-muted-foreground text-sm font-medium">
+                Start building for free. Upgrade when you scale.
+              </p>
             </div>
           )}
           {mockup !== false && (
-            <div className="relative w-full pt-12">
+            <div className="relative w-full pt-4 sm:pt-8">
               <MockupFrame
                 className="animate-appear opacity-0 delay-700"
                 size="small"
@@ -116,10 +132,12 @@ export default function Hero({
                   {mockup}
                 </Mockup>
               </MockupFrame>
-              <Glow
-                variant="top"
-                className="animate-appear-zoom opacity-0 delay-1000"
-              />
+              <div className="dark:opacity-70">
+                <Glow
+                  variant="above"
+                  className="animate-appear-zoom opacity-0 delay-1000"
+                />
+              </div>
             </div>
           )}
         </div>

@@ -2,9 +2,12 @@ import { ReactNode } from "react";
 
 import { siteConfig } from "@/config/site";
 
-import Figma from "../../logos/figma";
+import Clerk from "../../logos/clerk";
+import Convex from "../../logos/convex";
+import NextJs from "../../logos/nextjs";
 import React from "../../logos/react";
 import ShadcnUi from "../../logos/shadcn-ui";
+import Stripe from "../../logos/stripe";
 import Tailwind from "../../logos/tailwind";
 import TypeScript from "../../logos/typescript";
 import { Badge } from "../../ui/badge";
@@ -19,29 +22,23 @@ interface LogosProps {
 }
 
 export default function Logos({
-  title = "Built with industry-standard tools and best practices",
+  title = "Built with Modern, Production-Ready Technologies",
   badge = (
-    <Badge variant="outline" className="border-brand/30 text-brand">
-      Last updated: {siteConfig.stats.updated}
-    </Badge>
+    <p className="text-muted-foreground max-w-2xl text-sm">
+      FluxKit leverages the best tools in the ecosystem to deliver a fast,
+      scalable, and maintainable codebase that accelerates your development
+      workflow.
+    </p>
   ),
   logos = [
-    <Logo key="figma" image={Figma} name="Figma" />,
-    <Logo key="react" image={React} name="React" version="19.2.1" />,
-    <Logo
-      key="typescript"
-      image={TypeScript}
-      name="TypeScript"
-      version="5.9.3"
-    />,
-    <Logo
-      key="shadcn"
-      image={ShadcnUi}
-      name="Shadcn/ui"
-      version="3.6.3"
-      badge="New"
-    />,
-    <Logo key="tailwind" image={Tailwind} name="Tailwind" version="4.1.18" />,
+    <Logo key="convex" image={Convex} name="Convex" />,
+    <Logo key="nextjs" image={NextJs} name="Next.js" />,
+    <Logo key="react" image={React} name="React" />,
+    <Logo key="typescript" image={TypeScript} name="TypeScript" />,
+    <Logo key="tailwind" image={Tailwind} name="Tailwind CSS" />,
+    <Logo key="shadcn" image={ShadcnUi} name="Shadcn UI" />,
+    <Logo key="stripe" image={Stripe} name="Stripe" />,
+    <Logo key="clerk" image={Clerk} name="Clerk" />,
   ],
   className,
 }: LogosProps) {

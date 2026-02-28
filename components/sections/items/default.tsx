@@ -1,16 +1,32 @@
 import {
-  BlocksIcon,
-  EclipseIcon,
-  FastForwardIcon,
-  LanguagesIcon,
+  ActivityIcon,
+  BarChart3Icon,
+  Building2Icon,
+  CodeIcon,
+  CreditCardIcon,
+  DatabaseIcon,
+  FileTextIcon,
+  ImageIcon,
+  KeyIcon,
+  LayoutDashboardIcon,
+  LayoutTemplateIcon,
+  MailCheckIcon,
+  MailIcon,
   MonitorSmartphoneIcon,
-  RocketIcon,
-  ScanFaceIcon,
-  SquarePenIcon,
+  NewspaperIcon,
+  ReceiptIcon,
+  RefreshCwIcon,
+  ShieldCheckIcon,
+  ShieldIcon,
+  SparklesIcon,
+  UploadIcon,
+  UserPlusIcon,
+  UsersIcon,
+  ZapIcon,
 } from "lucide-react";
 import { ReactNode } from "react";
 
-import { Item, ItemDescription,ItemIcon, ItemTitle } from "../../ui/item";
+import { Item, ItemDescription, ItemIcon, ItemTitle } from "../../ui/item";
 import { Section } from "../../ui/section";
 
 interface ItemProps {
@@ -26,50 +42,130 @@ interface ItemsProps {
 }
 
 export default function Items({
-  title = "Everything you need. Nothing you don't.",
+  title = "Everything You Need to Ship Your SaaS",
   items = [
     {
-      title: "Accessibility first",
-      description: "Fully WCAG 2.0 compliant, made with best a11y practices",
-      icon: <ScanFaceIcon className="size-5 stroke-1" />,
+      title: "Email & OAuth authentication",
+      description:
+        "Secure login with email/password and social providers like Google, GitHub",
+      icon: <KeyIcon className="size-5 stroke-1" />,
     },
     {
-      title: "Responsive design",
-      description: "Looks and works great on any device and screen size",
+      title: "Multi-factor authentication",
+      description: "Add an extra layer of security with MFA support",
+      icon: <ShieldCheckIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Email verification",
+      description: "Automated email verification flows for new users",
+      icon: <MailCheckIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Stripe integration",
+      description:
+        "Complete payment processing with webhooks and subscriptions",
+      icon: <CreditCardIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Subscription management",
+      description: "Handle plans, upgrades, downgrades, and cancellations",
+      icon: <RefreshCwIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Customer billing portal",
+      description: "Let customers manage their billing and invoices",
+      icon: <ReceiptIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Organization workspaces",
+      description: "Multi-tenant architecture with workspace isolation",
+      icon: <Building2Icon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Team invitations",
+      description: "Invite members with customizable roles and permissions",
+      icon: <UserPlusIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Role-based access control",
+      description: "Granular permissions system for team members",
+      icon: <ShieldIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Member management",
+      description: "Add, remove, and manage team members easily",
+      icon: <UsersIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Real-time database",
+      description: "Powered by Convex for instant data queries and updates",
+      icon: <DatabaseIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Live data synchronization",
+      description: "Changes sync automatically across all connected clients",
+      icon: <ActivityIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Optimistic updates",
+      description: "Instant UI feedback with automatic rollback on errors",
+      icon: <ZapIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Admin dashboard",
+      description:
+        "Comprehensive interface for user and organization management",
+      icon: <LayoutDashboardIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Analytics & insights",
+      description: "Track key metrics and user behavior",
+      icon: <BarChart3Icon className="size-5 stroke-1" />,
+    },
+    {
+      title: "File upload & storage",
+      description: "Secure file handling with cloud storage integration",
+      icon: <UploadIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Image optimization",
+      description: "Automatic image processing and optimization",
+      icon: <ImageIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Transactional emails",
+      description: "Send automated emails for key user actions",
+      icon: <MailIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Email templates",
+      description: "Beautiful, responsive templates built with React Email",
+      icon: <FileTextIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "AI integrations",
+      description: "Ready-to-use examples for OpenAI and Anthropic",
+      icon: <SparklesIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Landing page templates",
+      description: "Conversion-optimized pages to showcase your product",
+      icon: <LayoutTemplateIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Blog system with MDX",
+      description: "SEO-friendly blog with rich content support",
+      icon: <NewspaperIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Full TypeScript support",
+      description: "End-to-end type safety for better developer experience",
+      icon: <CodeIcon className="size-5 stroke-1" />,
+    },
+    {
+      title: "Responsive & dark mode",
+      description: "Works beautifully on all devices with theme switching",
       icon: <MonitorSmartphoneIcon className="size-5 stroke-1" />,
-    },
-    {
-      title: "Light and dark mode",
-      description:
-        "Seamless switching between color schemes, 6 themes included",
-      icon: <EclipseIcon className="size-5 stroke-1" />,
-    },
-    {
-      title: "Easy to customize",
-      description: "Flexible options to match your product or brand",
-      icon: <BlocksIcon className="size-5 stroke-1" />,
-    },
-    {
-      title: "Top-level performance",
-      description: "Made for lightning-fast load times and smooth interactions",
-      icon: <FastForwardIcon className="size-5 stroke-1" />,
-    },
-    {
-      title: "Production ready",
-      description: "Thoroughly tested and launch-prepared",
-      icon: <RocketIcon className="size-5 stroke-1" />,
-    },
-    {
-      title: "Made for localisation",
-      description:
-        "Easy to implement support for multiple languages and regions",
-      icon: <LanguagesIcon className="size-5 stroke-1" />,
-    },
-    {
-      title: "CMS friendly",
-      description:
-        "Built to work with your any headless content management system",
-      icon: <SquarePenIcon className="size-5 stroke-1" />,
     },
   ],
   className,

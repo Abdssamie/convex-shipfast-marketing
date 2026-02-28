@@ -12,38 +12,45 @@ interface StatItemProps {
 interface StatsProps {
   items?: StatItemProps[] | false;
   className?: string;
+  title?: string;
 }
 
 export default function Stats({
   items = [
     {
-      label: "used by",
-      value: Math.round(siteConfig.stats.figma / 100) / 10,
-      suffix: "k",
-      description: "designers on Figma Community",
+      label: "GitHub",
+      value: siteConfig.stats.github || "0",
+      description: "stars on GitHub",
     },
     {
-      label: "over",
-      value: siteConfig.stats.github,
-      description: "clones and forks of the template on Github",
+      label: "Features",
+      value: siteConfig.stats.features,
+      suffix: "+",
+      description: "included out of the box",
     },
     {
-      label: "already",
-      value: Math.round(siteConfig.stats.cli / 100) / 10,
-      suffix: "k",
-      description: "installations with shadcn/ui CLI",
+      label: "Components",
+      value: siteConfig.stats.components,
+      suffix: "+",
+      description: "pre-built UI components",
     },
     {
-      label: "includes",
-      value: siteConfig.stats.sections,
-      description: "blocks and sections",
+      label: "Integrations",
+      value: siteConfig.stats.integrations,
+      description: "third-party integrations",
     },
   ],
   className,
+  title = "Production-Ready from Day One",
 }: StatsProps) {
   return (
     <Section className={className}>
       <div className="container mx-auto max-w-[960px]">
+        {title && (
+          <h2 className="mb-12 text-center text-3xl font-semibold sm:text-4xl md:text-5xl">
+            {title}
+          </h2>
+        )}
         {items !== false && items.length > 0 && (
           <div className="grid grid-cols-2 gap-12 sm:grid-cols-4">
             {items.map((item, index) => (
