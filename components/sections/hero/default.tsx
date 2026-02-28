@@ -51,10 +51,10 @@ export default function Hero({
       <span className="bg-foreground text-background font-semibold px-2 ml-0.5 py-1 my-0.5 text-xs rounded-full">
         New
       </span>
-      <span className="text-muted-foreground font-medium">
+      <span className="text-muted-foreground font-semibold">
         Convex Real-Time DB, Stripe Billing, Shadcn UI & more!
       </span>
-      <div className="flex items-center justify-center bg-muted rounded-full p-1 ml-1">
+      <div className="flex items-center justify-center bg-black/5 dark:bg-white/10 rounded-full p-1 ml-1">
         <ChevronRightIcon className="text-foreground size-3 transition-transform group-hover:translate-x-0.5" />
       </div>
     </Badge>
@@ -92,7 +92,7 @@ export default function Hero({
               <>
                 <span className="text-foreground">Skip the Boilerplate </span>
                 <br className="hidden md:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-br from-orange-600 to-red-500 dark:to-red-300 drop-shadow-md">
+                <span className="text-transparent bg-clip-text bg-gradient-to-br from-orange-600 to-red-400 dark:to-red-300 drop-shadow-md">
                   Ship This Weekend
                 </span>
               </>
