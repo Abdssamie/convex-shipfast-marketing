@@ -1,5 +1,5 @@
 import { type VariantProps } from "class-variance-authority";
-import { ArrowRightIcon, RocketIcon, StarIcon } from "lucide-react";
+import { ChevronRightIcon, RocketIcon, StarIcon } from "lucide-react";
 import { ReactNode } from "react";
 
 import { siteConfig } from "@/config/site";
@@ -46,12 +46,17 @@ export default function Hero({
   badge = (
     <Badge
       variant="outline"
-      className="animate-appear px-4 py-0 text-sm group hover:border-primary/50 cursor-pointer transition-colors"
+      className="animate-appear p-1 pr-2 text-xs group hover:border-primary/50 cursor-pointer transition-colors rounded-full flex items-center gap-3 bg-background shadow-sm"
     >
-      <span className="text-muted-foreground font-medium">
-        New: Convex Real-Time DB • Stripe Billing • Shadcn UI
+      <span className="bg-foreground text-background font-semibold px-2 ml-0.5 py-1 my-0.5 text-xs rounded-full">
+        New
       </span>
-      <ArrowRightIcon className="text-muted-foreground ml-2 size-4 transition-transform group-hover:translate-x-0.5" />
+      <span className="text-muted-foreground font-medium">
+        Convex Real-Time DB, Stripe Billing, Shadcn UI & more!
+      </span>
+      <div className="flex items-center justify-center bg-muted rounded-full p-1 ml-1">
+        <ChevronRightIcon className="text-foreground size-3 transition-transform group-hover:translate-x-0.5" />
+      </div>
     </Badge>
   ),
   buttons = [
@@ -87,7 +92,7 @@ export default function Hero({
               <>
                 <span className="text-foreground">Skip the Boilerplate </span>
                 <br className="hidden md:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-br from-orange-600 to-red-300 drop-shadow-md">
+                <span className="text-transparent bg-clip-text bg-gradient-to-br from-orange-600 to-red-500 dark:to-red-300 drop-shadow-md">
                   Ship This Weekend
                 </span>
               </>
@@ -132,7 +137,7 @@ export default function Hero({
                   {mockup}
                 </Mockup>
               </MockupFrame>
-              <div className="dark:opacity-70">
+              <div className="opacity-40 dark:opacity-70">
                 <Glow
                   variant="above"
                   className="animate-appear-zoom opacity-0 delay-1000"
