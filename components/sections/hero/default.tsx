@@ -1,5 +1,5 @@
 import { type VariantProps } from "class-variance-authority";
-import { ChevronRightIcon, RocketIcon, StarIcon } from "lucide-react";
+import { ChevronRightIcon, StarIcon } from "lucide-react";
 import { ReactNode } from "react";
 
 import { siteConfig } from "@/config/site";
@@ -47,25 +47,25 @@ export default function Hero({
   badge = (
     <Badge
       variant="outline"
-      className="animate-appear p-1 pr-2 text-xs group hover:border-primary/50 cursor-pointer transition-colors rounded-full flex items-center gap-3 bg-background shadow-sm"
+      className="animate-appear group hover:border-primary/50 bg-background flex cursor-pointer items-center gap-3 rounded-full p-1 pr-2 text-xs shadow-sm transition-colors"
     >
-      <span className="bg-foreground text-background font-semibold px-2 ml-0.5 py-1 my-0.5 text-xs rounded-full">
+      <span className="bg-foreground text-background my-0.5 ml-0.5 rounded-full px-2 py-1 text-xs font-semibold">
         New
       </span>
       <span className="text-muted-foreground font-semibold">
         Convex Real-Time DB, Stripe Billing, Shadcn UI & more!
       </span>
-      <div className="flex items-center justify-center bg-black/5 dark:bg-white/10 rounded-full p-1 ml-1">
+      <div className="ml-1 flex items-center justify-center rounded-full bg-black/5 p-1 dark:bg-white/10">
         <ChevronRightIcon className="text-foreground size-3 transition-transform group-hover:translate-x-0.5" />
       </div>
     </Badge>
   ),
   buttons = [
     {
-      href: siteConfig.pricing.free,
-      text: "Get Started Free",
+      href: siteConfig.links.github,
+      text: "View on GitHub",
       variant: "default",
-      icon: <RocketIcon className="mr-2 size-4" />,
+      icon: <Github className="mr-2 size-4" />,
     },
   ],
   className,
@@ -87,23 +87,24 @@ export default function Hero({
               <>
                 <span className="text-foreground">Skip the Boilerplate </span>
                 <br className="hidden md:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-br from-orange-600 to-red-400 dark:to-red-300 drop-shadow-md">
+                <span className="bg-gradient-to-br from-orange-600 to-red-400 bg-clip-text text-transparent drop-shadow-md dark:to-red-300">
                   Ship This Weekend
                 </span>
               </>
             )}
           </h1>
-          <p className="text-md animate-appear text-slate-500 dark:text-slate-300 relative z-10 max-w-[740px] font-medium text-balance opacity-0 delay-100 sm:text-xl leading-relaxed">
+          <p className="text-md animate-appear relative z-10 max-w-[740px] leading-relaxed font-medium text-balance text-slate-500 opacity-0 delay-100 sm:text-xl dark:text-slate-300">
             {description}
           </p>
           {buttons !== false && buttons.length > 0 && (
             <div className="animate-appear relative z-10 flex flex-col items-center gap-3 opacity-0 delay-300">
-              <div className="flex justify-center gap-4">
+              <div className="flex justify-center mb-4 gap-4">
                 {buttons.map((button, index) => (
                   <Button
                     key={index}
                     variant={button.variant || "default"}
-                    size="lg"
+                    size="xl"
+                    className="bg-foreground text-background hover:bg-foreground/90 px-8 py-3 text-lg shadow-lg shadow-black/10"
                     asChild
                   >
                     <a href={button.href}>
@@ -114,8 +115,14 @@ export default function Hero({
                   </Button>
                 ))}
               </div>
-              <Terminal copyCommand="npx create-fluxkit-app@latest" className="mt-4 pointer-events-auto w-full max-w-sm">
-                <TypingAnimation className="text-emerald-400 font-semibold delay-0 font-mono tracking-tight text-sm" duration={40}>
+              <Terminal
+                copyCommand="npx create-fluxkit-app@latest"
+                className="pointer-events-auto w-full max-w-xl"
+              >
+                <TypingAnimation
+                  className="font-mono text-lg font-semibold tracking-tight text-emerald-400 delay-0 sm:text-xl"
+                  duration={40}
+                >
                   npx create-fluxkit-app@latest
                 </TypingAnimation>
               </Terminal>

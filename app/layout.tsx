@@ -65,9 +65,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" style={{ colorScheme: "dark" }} className="dark">
+    <html lang="en" suppressHydrationWarning className="dark">
       <body className={`${inter.className} bg-background antialiased`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
