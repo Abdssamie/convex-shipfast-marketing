@@ -5,8 +5,8 @@ import { ReactNode } from "react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import LaunchUI from "../../logos/launch-ui";
 import { Button, buttonVariants } from "../../ui/button";
+import PlaceholderLogo from "../../ui/placeholder-logo";
 import {
   Navbar as NavbarComponent,
   NavbarLeft,
@@ -41,19 +41,20 @@ interface NavbarProps {
 }
 
 export default function Navbar({
-  logo = <LaunchUI />,
-  name = "Launch UI",
-  homeUrl = siteConfig.url,
+  logo = <PlaceholderLogo />,
+  name = "FluxKit",
+  homeUrl = "/",
   mobileLinks = [
-    { text: "Getting Started", href: siteConfig.url },
-    { text: "Components", href: siteConfig.url },
-    { text: "Documentation", href: siteConfig.url },
+    { text: "Features", href: "/#features" },
+    { text: "Pricing", href: "/#pricing" },
+    { text: "FAQ", href: "/#faq" },
+    { text: "Documentation", href: siteConfig.docsUrl },
   ],
   actions = [
-    { text: "Sign in", href: siteConfig.url, isButton: false },
+    { text: "GitHub", href: siteConfig.links.github, isButton: false },
     {
       text: "Get Started",
-      href: siteConfig.url,
+      href: siteConfig.getStartedUrl,
       isButton: true,
       variant: "default",
     },

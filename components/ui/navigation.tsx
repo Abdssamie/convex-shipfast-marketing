@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import LaunchUI from "../logos/launch-ui";
+import PlaceholderLogo from "./placeholder-logo";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -48,17 +48,29 @@ interface NavigationProps {
 export default function Navigation({
   menuItems = [
     {
-      title: "Getting started",
-      content: "default",
-    },
-    {
-      title: "Components",
-      content: "components",
-    },
-    {
-      title: "Documentation",
+      title: "Features",
       isLink: true,
-      href: siteConfig.url,
+      href: "/#features",
+    },
+    {
+      title: "Pricing",
+      isLink: true,
+      href: "/#pricing",
+    },
+    {
+      title: "FAQ",
+      isLink: true,
+      href: "/#faq",
+    },
+    {
+      title: "Docs",
+      isLink: true,
+      href: siteConfig.docsUrl,
+    },
+    {
+      title: "GitHub",
+      isLink: true,
+      href: siteConfig.links.github,
     },
   ],
   components = [
@@ -98,10 +110,10 @@ export default function Navigation({
         "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
     },
   ],
-  logo = <LaunchUI />,
-  logoTitle = "Launch UI",
-  logoDescription = "Landing page template built with React, Shadcn/ui and Tailwind that you can copy/paste into your project.",
-  logoHref = siteConfig.url,
+  logo = <PlaceholderLogo />,
+  logoTitle = "FluxKit",
+  logoDescription = "Production-ready SaaS starter with modern auth, billing, and dashboard foundations.",
+  logoHref = "/",
   introItems = [
     {
       title: "Introduction",

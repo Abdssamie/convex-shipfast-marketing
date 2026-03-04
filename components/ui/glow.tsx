@@ -31,14 +31,14 @@ function Glow({
     >
       <div
         className={cn(
-          "absolute left-1/2 h-[256px] w-[60%] -translate-x-1/2 scale-[2.5] rounded-[50%] bg-radial from-red-500/50 from-10% to-red-500/0 to-60% opacity-20 sm:h-[512px] dark:opacity-100",
+          "absolute left-1/2 h-[256px] w-[60%] -translate-x-1/2 scale-[2.5] rounded-[50%] bg-radial from-brand/50 from-10% to-brand/0 to-60% opacity-20 sm:h-[512px] dark:opacity-100",
           variant === "center" && "-translate-y-1/2",
           variant === "top" && "-translate-y-1/2",
         )}
       />
       <div
         className={cn(
-          "absolute left-1/2 h-[128px] w-[40%] -translate-x-1/2 scale-200 rounded-[50%] bg-radial from-red-400/30 from-10% to-red-500/0 to-60% opacity-20 sm:h-[256px] dark:opacity-100",
+          "absolute left-1/2 h-[128px] w-[40%] -translate-x-1/2 scale-200 rounded-[50%] bg-radial from-brand/30 from-10% to-brand/0 to-60% opacity-20 sm:h-[256px] dark:opacity-100",
           variant === "center" && "-translate-y-1/2",
           variant === "top" && "-translate-y-1/2",
         )}

@@ -14,15 +14,15 @@ export const siteConfig = {
   },
   pricing: {
     free: "https://github.com/fluxkit/fluxkit",
-    pro: "https://buy.stripe.com/fluxkit-pro", // Update with actual Stripe link
-    proPolar: "https://polar.sh/fluxkit/products/pro", // Update with actual Polar link
+    pro: "/#pricing",
+    proPolar: "/#pricing",
   },
   stats: {
-    github: 0, // Will update as stars grow
-    features: 50,
-    components: 30,
-    integrations: 8,
-    total: "50+",
+    github: 0,
+    features: 40,
+    components: 25,
+    integrations: 9,
+    total: "40+",
     updated: "Feb 2026",
   },
 };

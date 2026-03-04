@@ -14,56 +14,58 @@ interface PricingProps {
 }
 
 export default function Pricing({
-  title = "Simple, transparent pricing",
-  description = "Start with our open-source version or unlock everything with Pro. One-time payment, lifetime access.",
+  title = "Pricing for Open Source and Growth Teams",
+  description = "Start free for core auth-first product setup, then upgrade to unlock organizations, complete product surfaces, and business-ready workflows.",
   plans = [
     {
       name: "Free",
       icon: <Github className="size-4" />,
-      description: "Perfect for learning and personal projects",
+      description: "Open-source starter for auth-first products and solo builders.",
       price: 0,
-      priceNote: "MIT License. Community updates.",
+      priceNote: "MIT license. Community support and updates.",
       cta: {
         variant: "default",
-        label: "Get Free Version",
+        label: "Get Free Tier",
         href: siteConfig.pricing.free,
       },
       features: [
-        "GitHub repository access",
-        "Basic authentication",
-        "Core Convex integration",
+        "Email/password authentication",
+        "Magic links and verification",
+        "Polar payments integration",
+        "Brevo email integration",
+        "Convex backend setup",
+        "Testing and linting starter setup",
+        "TypeScript and Next.js baseline",
+        "Open-source code access",
+        "No organization or teams support",
+        "No advanced dashboard modules",
         "Community support",
-        "MIT License",
-        "Community updates",
       ],
       variant: "default",
     },
     {
-      name: "Pro",
-      description: "Everything you need to launch and scale your SaaS",
+      name: "Business",
+      description: "Full Convex ShipFast stack for teams shipping commercial SaaS.",
       price: 399,
-      priceNote: "Lifetime access. Unlimited projects. Commercial license.",
+      priceNote: "One-time payment. Lifetime updates. Commercial use.",
       cta: {
         variant: "glow",
-        label: "Buy Pro Version",
+        label: "Get Business Tier",
         href: siteConfig.pricing.pro,
       },
       features: [
         "Everything in Free, plus:",
-        "Stripe billing integration",
-        "Multi-tenancy/organizations",
-        "Admin dashboard",
-        "Real-time features",
-        "File storage system",
-        "Email system with templates",
-        "AI integration examples",
-        "Blog & documentation templates",
-        "Landing page templates",
-        "Priority Discord support",
+        "Organizations and team management",
+        "Role-based access control",
+        "Complete dashboard experience",
+        "Landing page and content surfaces",
+        "Advanced analytics modules",
+        "Production notifications patterns",
+        "Business-ready architecture defaults",
+        "Priority support",
         "Lifetime updates",
         "Commercial license",
         "Unlimited projects",
-        "Private GitHub repo access",
       ],
       variant: "glow-brand",
     },
@@ -71,7 +73,7 @@ export default function Pricing({
   className = "",
 }: PricingProps) {
   return (
-    <Section className={cn(className)}>
+    <Section id="pricing" className={cn(className)}>
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-12">
         {(title || description) && (
           <div className="flex flex-col items-center gap-4 px-4 text-center sm:gap-8">
@@ -117,12 +119,12 @@ export default function Pricing({
                   <tr className="border-input border-b">
                     <th className="p-4 text-left font-semibold">Features</th>
                     <th className="p-4 text-center font-semibold">Free</th>
-                    <th className="p-4 text-center font-semibold">Pro</th>
+                    <th className="p-4 text-center font-semibold">Business</th>
                   </tr>
                 </thead>
                 <tbody className="divide-input divide-y">
                   <tr>
-                    <td className="p-4 text-sm">GitHub repository access</td>
+                    <td className="p-4 text-sm">Email/password auth</td>
                     <td className="p-4 text-center">
                       <Check className="text-muted-foreground mx-auto size-5" />
                     </td>
@@ -131,7 +133,7 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Basic authentication</td>
+                    <td className="p-4 text-sm">Magic links + verification</td>
                     <td className="p-4 text-center">
                       <Check className="text-muted-foreground mx-auto size-5" />
                     </td>
@@ -140,7 +142,108 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Core Convex integration</td>
+                    <td className="p-4 text-sm">Convex backend setup</td>
+                    <td className="p-4 text-center">
+                      <Check className="text-muted-foreground mx-auto size-5" />
+                    </td>
+                    <td className="p-4 text-center">
+                      <Check className="text-brand-foreground mx-auto size-5" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-sm">Polar payments</td>
+                    <td className="p-4 text-center">
+                        <Check className="text-muted-foreground mx-auto size-5" />
+                      </td>
+                      <td className="p-4 text-center">
+                        <Check className="text-brand-foreground mx-auto size-5" />
+                      </td>
+                    </tr>
+                    <tr>
+                    <td className="p-4 text-sm">Brevo email integration</td>
+                    <td className="p-4 text-center">
+                      <Check className="text-muted-foreground mx-auto size-5" />
+                    </td>
+                    <td className="p-4 text-center">
+                      <Check className="text-brand-foreground mx-auto size-5" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-sm">Organizations and teams</td>
+                    <td className="p-4 text-center">
+                      <X className="text-muted-foreground/30 mx-auto size-5" />
+                    </td>
+                    <td className="p-4 text-center">
+                      <Check className="text-brand-foreground mx-auto size-5" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-sm">Dashboard modules</td>
+                    <td className="p-4 text-center">
+                      <X className="text-muted-foreground/30 mx-auto size-5" />
+                    </td>
+                    <td className="p-4 text-center">
+                      <Check className="text-brand-foreground mx-auto size-5" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-sm">Landing page sections</td>
+                    <td className="p-4 text-center">
+                      <X className="text-muted-foreground/30 mx-auto size-5" />
+                    </td>
+                    <td className="p-4 text-center">
+                      <Check className="text-brand-foreground mx-auto size-5" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-sm">Testing starter setup</td>
+                    <td className="p-4 text-center">
+                      <Check className="text-muted-foreground mx-auto size-5" />
+                    </td>
+                    <td className="p-4 text-center">
+                      <Check className="text-brand-foreground mx-auto size-5" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-sm">Analytics + monitoring setup</td>
+                    <td className="p-4 text-center">
+                      <X className="text-muted-foreground/30 mx-auto size-5" />
+                    </td>
+                    <td className="p-4 text-center">
+                      <Check className="text-brand-foreground mx-auto size-5" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-sm">Rate limiting patterns</td>
+                    <td className="p-4 text-center">
+                      <X className="text-muted-foreground/30 mx-auto size-5" />
+                    </td>
+                    <td className="p-4 text-center">
+                      <Check className="text-brand-foreground mx-auto size-5" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-sm">
+                      Commercial project use
+                    </td>
+                    <td className="p-4 text-center">
+                      <span className="text-muted-foreground text-xs">MIT</span>
+                    </td>
+                    <td className="p-4 text-center">
+                      <Check className="text-brand-foreground mx-auto size-5" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-sm">Priority support</td>
+                    <td className="p-4 text-center">
+                      <X className="text-muted-foreground/30 mx-auto size-5" />
+                    </td>
+                    <td className="p-4 text-center">
+                      <Check className="text-brand-foreground mx-auto size-5" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-sm">Unlimited projects</td>
                     <td className="p-4 text-center">
                       <Check className="text-muted-foreground mx-auto size-5" />
                     </td>
@@ -158,119 +261,9 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Stripe billing integration</td>
-                    <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">Multi-tenancy/organizations</td>
-                    <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">Admin dashboard</td>
-                    <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">Real-time features</td>
-                    <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">File storage system</td>
-                    <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">Email system with templates</td>
-                    <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">AI integration examples</td>
-                    <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">
-                      Blog & documentation templates
-                    </td>
-                    <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">Landing page templates</td>
-                    <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">Priority Discord support</td>
-                    <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
                     <td className="p-4 text-sm">Commercial license</td>
                     <td className="p-4 text-center">
                       <span className="text-muted-foreground text-xs">MIT</span>
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">Unlimited projects</td>
-                    <td className="p-4 text-center">
-                      <Check className="text-muted-foreground mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">Private GitHub repo access</td>
-                    <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
                     </td>
                     <td className="p-4 text-center">
                       <Check className="text-brand-foreground mx-auto size-5" />

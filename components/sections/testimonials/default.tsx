@@ -17,63 +17,49 @@ interface TestimonialsProps {
 }
 
 export default function Testimonials({
-  title = "Loved by Developers Building SaaS",
+  title = "Why Teams Choose Convex ShipFast",
   testimonials = [
     {
-      name: "Alex Chen",
-      role: "Founder at TechStartup",
+      name: "Startup Founders",
+      role: "Early-stage teams",
       quote:
-        "This saved me months of development time. I was able to launch my SaaS in weeks instead of months. The real-time features work flawlessly out of the box.",
-      initials: "AC",
+        "We can launch faster because auth, billing, and infrastructure are already solved in a stack we trust.",
+      initials: "SF",
     },
     {
-      name: "Sarah Johnson",
-      role: "Developer at SaaSCo",
+      name: "Full-stack Developers",
+      role: "Product engineering teams",
       quote:
-        "Best investment for launching my SaaS. The Convex integration is brilliant and the documentation is excellent and comprehensive. I can't recommend this enough.",
-      initials: "SJ",
+        "Convex ShipFast gives us a clean TypeScript baseline and removes repetitive setup work across projects.",
+      initials: "FD",
     },
     {
-      name: "Michael Rodriguez",
-      role: "Indie Hacker",
+      name: "SaaS Builders",
+      role: "Indie and small teams",
       quote:
-        "Perfect for indie hackers like me. Stripe billing just works without any headaches. I was up and running with payments in less than an hour.",
-      initials: "MR",
+        "The free tier is enough to validate quickly, and upgrading to business unlocks teams and polished product surfaces.",
+      initials: "SB",
     },
     {
-      name: "Emily Watson",
-      role: "CTO at StartupLabs",
+      name: "Technical Leads",
+      role: "Scaling startups",
       quote:
-        "The real-time features work flawlessly out of the box. Our team was impressed with how easy it was to implement complex functionality without reinventing the wheel.",
-      initials: "EW",
+        "We keep velocity high because realtime data, monitoring, analytics, and dashboard modules are already integrated.",
+      initials: "TL",
     },
     {
-      name: "David Kim",
-      role: "Full-stack Developer",
+      name: "Product Teams",
+      role: "B2B SaaS products",
       quote:
-        "Support is incredibly responsive and helpful. Every question I had was answered within hours. The community around this is fantastic.",
-      initials: "DK",
+        "The architecture makes it easy to adapt flows for our domain instead of fighting opinionated black boxes.",
+      initials: "PT",
     },
     {
-      name: "Jessica Martinez",
-      role: "Founder at CloudApp",
+      name: "Engineers",
+      role: "Implementation-focused teams",
       quote:
-        "Saved months of development time and thousands in development costs. The authentication and billing systems alone are worth the investment.",
-      initials: "JM",
-    },
-    {
-      name: "Ryan Thompson",
-      role: "Software Engineer",
-      quote:
-        "Documentation is excellent and comprehensive. I was able to customize everything to fit my needs without getting stuck. This is how all boilerplates should be built.",
-      initials: "RT",
-    },
-    {
-      name: "Lisa Park",
-      role: "Product Manager at InnovateCo",
-      quote:
-        "Best investment for launching my SaaS quickly. The Convex integration is brilliant and makes building real-time features a breeze.",
-      initials: "LP",
+        "It feels professional out of the box, and that matters when shipping for paying customers.",
+      initials: "EN",
     },
   ],
   className = "",

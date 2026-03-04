@@ -1,16 +1,12 @@
 import { ReactNode } from "react";
 
-import { siteConfig } from "@/config/site";
-
-import Clerk from "../../logos/clerk";
 import Convex from "../../logos/convex";
+import Github from "../../logos/github";
 import NextJs from "../../logos/nextjs";
 import React from "../../logos/react";
 import ShadcnUi from "../../logos/shadcn-ui";
-import Stripe from "../../logos/stripe";
 import Tailwind from "../../logos/tailwind";
 import TypeScript from "../../logos/typescript";
-import { Badge } from "../../ui/badge";
 import Logo from "../../ui/logo";
 import { Section } from "../../ui/section";
 
@@ -22,12 +18,11 @@ interface LogosProps {
 }
 
 export default function Logos({
-  title = "Built with Modern, Production-Ready Technologies",
+  title = "Built on a Production Stack Developers Already Trust",
   badge = (
     <p className="text-muted-foreground max-w-2xl text-sm">
-      FluxKit leverages the best tools in the ecosystem to deliver a fast,
-      scalable, and maintainable codebase that accelerates your development
-      workflow.
+      Convex ShipFast combines a modern frontend stack with battle-tested SaaS
+      building blocks so you can focus on product velocity, not glue code.
     </p>
   ),
   logos = [
@@ -37,8 +32,7 @@ export default function Logos({
     <Logo key="typescript" image={TypeScript} name="TypeScript" />,
     <Logo key="tailwind" image={Tailwind} name="Tailwind CSS" />,
     <Logo key="shadcn" image={ShadcnUi} name="Shadcn UI" />,
-    <Logo key="stripe" image={Stripe} name="Stripe" />,
-    <Logo key="clerk" image={Clerk} name="Clerk" />,
+    <Logo key="github" image={Github} name="GitHub" />,
   ],
   className,
 }: LogosProps) {

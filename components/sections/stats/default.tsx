@@ -20,28 +20,28 @@ export default function Stats({
     {
       label: "GitHub",
       value: siteConfig.stats.github || "0",
-      description: "stars on GitHub",
+      description: "open-source stars",
     },
     {
       label: "Features",
       value: siteConfig.stats.features,
       suffix: "+",
-      description: "included out of the box",
+      description: "production-ready capabilities",
     },
     {
-      label: "Components",
+      label: "Modules",
       value: siteConfig.stats.components,
       suffix: "+",
-      description: "pre-built UI components",
+      description: "reusable dashboard and UI sections",
     },
     {
       label: "Integrations",
       value: siteConfig.stats.integrations,
-      description: "third-party integrations",
+      description: "key SaaS integrations",
     },
   ],
   className,
-  title = "Production-Ready from Day One",
+  title = "Metrics That Matter for Product Teams",
 }: StatsProps) {
   return (
     <Section className={className}>

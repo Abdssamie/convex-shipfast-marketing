@@ -236,7 +236,9 @@ export const Terminal = ({
     >
       <div className="flex w-full items-center justify-between px-3">
         <div className="flex items-center overflow-x-auto text-sm font-mono tracking-tight scrollbar-hide py-1">
-          <span className="text-orange-300 mr-2 select-none font-bold">$</span>
+          <span className="text-orange-300 mr-2 inline-flex items-center self-center text-lg leading-none font-semibold select-none">
+            $
+          </span>
           {children}
         </div>
         {copyCommand && (

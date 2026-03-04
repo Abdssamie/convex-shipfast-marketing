@@ -24,17 +24,17 @@ interface CTAProps {
 }
 
 export default function CTA({
-  title = "Start Building Your SaaS Today",
-  description = "Join developers who chose FluxKit to launch faster. Get started with the free version or unlock everything with Pro.",
+  title = "Build the Product, Not the Boilerplate",
+  description = "Start with the free open-source tier or unlock the full Convex ShipFast business stack for teams and commercial launches.",
   buttons = [
     {
       href: siteConfig.pricing.free,
-      text: "Get Started Free",
+      text: "Get Free Tier",
       variant: "default",
     },
     {
-      href: "/#pricing",
-      text: "View Pricing",
+      href: siteConfig.docsUrl,
+      text: "Read Docs",
       variant: "outline",
     },
   ],

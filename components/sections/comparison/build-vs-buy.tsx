@@ -11,63 +11,75 @@ interface ComparisonRow {
 interface BuildVsBuyProps {
   title?: string;
   rows?: ComparisonRow[];
+  summary?: {
+    buildLabel: string;
+    buildValue: string;
+    buildCaption: string;
+    shipfastLabel: string;
+    shipfastValue: string;
+    shipfastCaption: string;
+    savingsLabel: string;
+    savingsValue: string;
+    savingsCaption: string;
+  };
   className?: string;
 }
 
 export default function BuildVsBuy({
-  title = "Skip Months of Infrastructure Work",
+  title = "Ship Features Instead of Rebuilding SaaS Plumbing",
   rows = [
     {
-      component: "Authentication (email, OAuth, MFA)",
-      buildTime: "2-4 weeks",
-      withFluxKit: "Pre-built",
-    },
-    {
-      component: "Stripe subscription billing",
+      component: "Auth flows (email, magic links, verification)",
       buildTime: "2-3 weeks",
-      withFluxKit: "Pre-built",
+      withFluxKit: "Ready now",
     },
     {
-      component: "Multi-tenant organizations",
+      component: "Subscription billing with Polar",
+      buildTime: "2-3 weeks",
+      withFluxKit: "Ready now",
+    },
+    {
+      component: "Organizations and team collaboration",
       buildTime: "3-4 weeks",
-      withFluxKit: "Pre-built",
+      withFluxKit: "Ready now",
     },
     {
-      component: "Real-time features with Convex",
+      component: "Convex realtime backend + sync patterns",
       buildTime: "2-3 weeks",
-      withFluxKit: "Pre-built",
+      withFluxKit: "Ready now",
     },
     {
-      component: "Admin dashboard",
+      component: "Dashboard modules (tasks, analytics, settings)",
       buildTime: "2-3 weeks",
-      withFluxKit: "Pre-built",
+      withFluxKit: "Ready now",
     },
     {
-      component: "File storage system",
+      component: "Email + notification infrastructure",
       buildTime: "1-2 weeks",
-      withFluxKit: "Pre-built",
+      withFluxKit: "Ready now",
     },
     {
-      component: "Email system",
-      buildTime: "1 week",
-      withFluxKit: "Pre-built",
-    },
-    {
-      component: "Blog & documentation",
+      component: "Monitoring, analytics, and rate limiting",
       buildTime: "1-2 weeks",
-      withFluxKit: "Pre-built",
+      withFluxKit: "Ready now",
     },
     {
-      component: "Dark mode & theming",
-      buildTime: "3-5 days",
-      withFluxKit: "Pre-built",
-    },
-    {
-      component: "Responsive UI components",
-      buildTime: "2-3 weeks",
-      withFluxKit: "Pre-built",
+      component: "Landing page and growth surfaces",
+      buildTime: "1-2 weeks",
+      withFluxKit: "Ready now",
     },
   ],
+  summary = {
+    buildLabel: "Build from scratch",
+    buildValue: "3-5 months",
+    buildCaption: "Across auth, billing, orgs, and dashboard foundations",
+    shipfastLabel: "With Convex ShipFast",
+    shipfastValue: "Day 1",
+    shipfastCaption: "Start building product-specific features immediately",
+    savingsLabel: "Estimated savings",
+    savingsValue: "300+ hours",
+    savingsCaption: "Engineering effort reclaimed for product development",
+  },
   className,
 }: BuildVsBuyProps) {
   return (
@@ -90,7 +102,7 @@ export default function BuildVsBuy({
                   Build Yourself
                 </div>
                 <div className="text-muted-foreground text-center text-sm font-semibold">
-                  With FluxKit
+                  With Convex ShipFast
                 </div>
               </div>
 
@@ -120,31 +132,37 @@ export default function BuildVsBuy({
           <div className="grid w-full gap-6 sm:grid-cols-3">
             <div className="border-border bg-muted/30 flex flex-col items-center gap-3 rounded-lg border p-6 text-center">
               <div className="text-muted-foreground text-sm font-semibold">
-                Build from scratch
+                {summary.buildLabel}
               </div>
-              <div className="text-3xl font-bold sm:text-4xl">3-6 months</div>
-              <div className="text-muted-foreground text-sm">500+ hours</div>
+              <div className="text-3xl font-bold sm:text-4xl">
+                {summary.buildValue}
+              </div>
+              <div className="text-muted-foreground text-sm">
+                {summary.buildCaption}
+              </div>
             </div>
 
             <div className="border-brand bg-brand/5 flex flex-col items-center gap-3 rounded-lg border p-6 text-center">
               <div className="text-brand text-sm font-semibold">
-                With FluxKit
+                {summary.shipfastLabel}
               </div>
               <div className="text-brand text-3xl font-bold sm:text-4xl">
-                Day 1
+                {summary.shipfastValue}
               </div>
               <div className="text-muted-foreground text-sm">
-                Start building features
+                {summary.shipfastCaption}
               </div>
             </div>
 
             <div className="border-border bg-muted/30 flex flex-col items-center gap-3 rounded-lg border p-6 text-center">
               <div className="text-muted-foreground text-sm font-semibold">
-                Estimated savings
+                {summary.savingsLabel}
               </div>
-              <div className="text-3xl font-bold sm:text-4xl">$15k-$50k</div>
+              <div className="text-3xl font-bold sm:text-4xl">
+                {summary.savingsValue}
+              </div>
               <div className="text-muted-foreground text-sm">
-                In developer time
+                {summary.savingsCaption}
               </div>
             </div>
           </div>

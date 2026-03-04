@@ -87,7 +87,7 @@ export default function Hero({
               <>
                 <span className="text-foreground">Skip the Boilerplate </span>
                 <br className="hidden md:block" />
-                <span className="bg-gradient-to-br from-orange-600 to-red-400 bg-clip-text text-transparent drop-shadow-md dark:to-red-300">
+                <span className="bg-gradient-to-br from-blue-600 to-cyan-400 bg-clip-text text-transparent drop-shadow-md dark:to-cyan-300">
                   Ship This Weekend
                 </span>
               </>
@@ -120,7 +120,7 @@ export default function Hero({
                 className="pointer-events-auto w-full max-w-xl"
               >
                 <TypingAnimation
-                  className="font-mono text-lg font-semibold tracking-tight text-emerald-400 delay-0 sm:text-xl"
+                  className="text-blue-400 dark:text-brand font-mono text-lg font-semibold tracking-tight delay-0 sm:text-xl"
                   duration={40}
                 >
                   npx create-fluxkit-app@latest

@@ -5,7 +5,6 @@ import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 import Github from "../../logos/github";
-import LaunchUI from "../../logos/launch-ui";
 import {
   Footer,
   FooterBottom,
@@ -13,6 +12,7 @@ import {
   FooterContent,
 } from "../../ui/footer";
 import { ModeToggle } from "../../ui/mode-toggle";
+import PlaceholderLogo from "../../ui/placeholder-logo";
 
 const DiscordIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -47,7 +47,7 @@ interface FooterProps {
 }
 
 export default function FooterSection({
-  logo = <LaunchUI />,
+  logo = <PlaceholderLogo />,
   name = "FluxKit",
   columns = [
     {
