@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 import { Button, buttonVariants } from "../../ui/button";
-import PlaceholderLogo from "../../ui/placeholder-logo";
+import FluxkitLogo from "../../ui/fluxkit-logo";
 import {
   Navbar as NavbarComponent,
   NavbarLeft,
@@ -41,7 +41,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({
-  logo = <PlaceholderLogo />,
+  logo = <FluxkitLogo size={24} />,
   name = "FluxKit",
   homeUrl = "/",
   mobileLinks = [
@@ -53,8 +53,8 @@ export default function Navbar({
   actions = [
     { text: "GitHub", href: siteConfig.links.github, isButton: false },
     {
-      text: "Get Started",
-      href: siteConfig.getStartedUrl,
+      text: "Buy FluxKit",
+      href: siteConfig.pricing.pro,
       isButton: true,
       variant: "default",
     },
@@ -119,6 +119,7 @@ export default function Navbar({
                     href={homeUrl}
                     className="flex items-center gap-2 text-xl font-bold"
                   >
+                    <FluxkitLogo size={22} />
                     <span>{name}</span>
                   </a>
                   {mobileLinks.map((link, index) => (

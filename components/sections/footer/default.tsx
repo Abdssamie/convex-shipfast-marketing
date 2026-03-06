@@ -11,8 +11,8 @@ import {
   FooterColumn,
   FooterContent,
 } from "../../ui/footer";
+import FluxkitLogo from "../../ui/fluxkit-logo";
 import { ModeToggle } from "../../ui/mode-toggle";
-import PlaceholderLogo from "../../ui/placeholder-logo";
 
 const DiscordIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -47,7 +47,7 @@ interface FooterProps {
 }
 
 export default function FooterSection({
-  logo = <PlaceholderLogo />,
+  logo = <FluxkitLogo size={28} />,
   name = "FluxKit",
   columns = [
     {
