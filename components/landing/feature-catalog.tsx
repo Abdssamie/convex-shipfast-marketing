@@ -1,5 +1,15 @@
 import { CheckIcon } from "lucide-react";
-import { Section } from "../ui/section";
+
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Section } from "@/components/ui/section";
+
 import { Container } from "./container";
 
 const featureCatalog = [
@@ -24,37 +34,46 @@ const featureCatalog = [
 ];
 
 export function FeatureCatalog() {
-    return (
-        <Section id="features">
-            <Container>
-                <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
-                    <div className="max-w-3xl">
-                        <p className="text-brand mb-3 text-xs font-semibold tracking-[0.16em] uppercase">
-                            Feature depth
-                        </p>
-                        <h2 className="text-3xl leading-tight font-semibold sm:text-5xl">
-                            Complete feature coverage, ready to ship
-                        </h2>
-                    </div>
-                    <p className="text-muted-foreground max-w-sm text-sm">
-                        No placeholder promises. This section maps directly to shipped
-                        capabilities in the source app.
-                    </p>
+  return (
+    <Section id="features">
+      <Container>
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+          <div className="max-w-3xl">
+            <Badge variant="outline" className="mb-4 px-3 py-1.5">
+              Feature depth
+            </Badge>
+            <h2 className="text-3xl leading-tight font-semibold sm:text-5xl">
+              Complete feature coverage, ready to ship
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-sm text-sm leading-6">
+            No placeholder promises. This section maps directly to shipped
+            capabilities in the source app.
+          </p>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {featureCatalog.map((feature, index) => (
+            <Card
+              key={feature}
+              className="group border-border/70 bg-card/50 hover:border-brand/50 hover:bg-card transition-colors"
+            >
+              <CardHeader className="pb-3">
+                <div className="bg-brand/10 text-brand flex size-10 items-center justify-center rounded-full border border-brand/20">
+                  <CheckIcon className="size-4" />
                 </div>
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    {featureCatalog.map((feature) => (
-                        <div
-                            key={feature}
-                            className="group border-border/70 bg-card/30 hover:border-brand/50 rounded-xl border px-4 py-3 text-sm transition-colors"
-                        >
-                            <p className="text-muted-foreground flex items-center gap-2 leading-relaxed">
-                                <CheckIcon className="text-brand size-4 shrink-0" />
-                                {feature}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            </Container>
-        </Section>
-    );
+                <CardTitle className="text-base leading-6">{feature}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-sm leading-6">
+                  Capability {String(index + 1).padStart(2, "0")} in the
+                  production baseline, ready to be adapted instead of rebuilt.
+                </CardDescription>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Container>
+    </Section>
+  );
 }

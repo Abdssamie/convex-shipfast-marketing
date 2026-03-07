@@ -1,0 +1,39 @@
+import { Steps } from "nextra/components";
+
+# Organizations
+
+Organizations make FluxKit suitable for B2B and team-based SaaS products. The product includes organization logic, account switching, invitation workflows, and organization settings screens.
+
+## What this feature includes
+
+- Multi-tenant organization data model.
+- Organization creation and switching UI.
+- Invite and membership workflows.
+- Organization settings management.
+- Billing alignment at the organization level.
+
+## How to use it
+
+<Steps>
+### Decide the tenancy model
+
+Choose whether every user gets a personal workspace, a team workspace, or both.
+
+### Configure organization creation rules
+
+Set naming, slug, and membership defaults that match your product.
+
+### Restrict access by role
+
+Apply role checks to billing, settings, and administrative actions.
+
+### Connect invites to onboarding
+
+Ensure invitation emails, acceptance screens, and post-accept redirects all land users inside the correct organization context.
+</Steps>
+
+## Recommended defaults
+
+- Make the current organization explicit in the UI header.
+- Limit destructive organization actions to owners.
+- Treat invitation emails and revoked memberships as audited events.

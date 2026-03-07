@@ -1,0 +1,45 @@
+import { Callout, Steps } from "nextra/components";
+
+# Authentication
+
+FluxKit ships with modern authentication flows intended for production SaaS products. The product includes sign in, sign up, password reset, email verification, and invite acceptance screens.
+
+## What this feature includes
+
+- Dedicated auth route group for public identity flows.
+- Better Auth client and server helpers.
+- Verification and recovery screens.
+- Invite-based onboarding support.
+- Organization-aware account creation paths.
+
+## How to use it
+
+<Steps>
+### Configure credentials and secrets
+
+Set the Better Auth secret and the site URLs used by your auth callbacks and emails.
+
+### Wire provider settings
+
+Enable the email and social providers you plan to expose in the sign-in and sign-up flows.
+
+### Customize the route group
+
+Update the auth routes and supporting UI to match your brand, copy, and policy requirements.
+
+### Test every recovery path
+
+Validate sign up, sign in, email verification, magic-link or password reset flows, and invite acceptance before launch.
+</Steps>
+
+## Production guidance
+
+- Keep auth callback URLs consistent across preview and production environments.
+- Treat email templates as part of the auth surface, not a later add-on.
+- Add monitoring for failed sign-in spikes and verification delivery failures.
+
+<Callout type="info">
+  Authentication is the feature that most directly affects conversion and
+  support load. Treat copy, redirect rules, and verification timing as product
+  decisions, not just implementation details.
+</Callout>

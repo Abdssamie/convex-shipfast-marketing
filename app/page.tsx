@@ -9,7 +9,6 @@ import { FeatureCatalog } from "../components/landing/feature-catalog";
 import { FinalCta } from "../components/landing/final-cta";
 import { PricingChecklist } from "../components/landing/pricing-checklist";
 import { PricingSection } from "../components/landing/pricing-section";
-import { ProductTour } from "../components/landing/product-tour";
 import { SocialProof } from "../components/landing/social-proof";
 import { TechStackStrip } from "../components/landing/tech-stack-strip";
 import { TrustStrip } from "../components/landing/trust-strip";
@@ -23,12 +22,9 @@ export default function Home() {
       <TechStackStrip />
       <BentoSection />
       <FeatureShowcase />
-      <ProductTour />
       <FeatureCatalog />
       <BuildVsBuy />
-      <SocialProof />
       <PricingSection />
-      <PricingChecklist />
       <FaqSection />
       <FinalCta />
       <Footer />

@@ -56,7 +56,6 @@ export default function FooterSection({
         { text: "Home", href: "/" },
         { text: "Features", href: "/#features" },
         { text: "Pricing", href: "/#pricing" },
-        { text: "Changelog", href: "/changelog" },
       ],
     },
     {

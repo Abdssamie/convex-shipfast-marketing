@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "./button";
 
 const pricingColumnVariants = cva(
-  "max-w-container relative flex flex-col gap-6 overflow-hidden rounded-2xl p-8 shadow-xl",
+  "max-w-container relative flex h-full flex-col gap-5 overflow-hidden rounded-2xl p-8 shadow-xl",
   {
     variants: {
       variant: {
@@ -67,8 +67,8 @@ export function PricingColumn({
           variant === "glow-brand" && "via-brand",
         )}
       />
-      <div className="flex flex-col gap-7">
-        <header className="flex flex-col gap-2">
+      <div className="flex flex-col gap-5">
+        <header className="flex flex-col gap-1.5 lg:min-h-[72px]">
           <h2 className="flex items-center gap-2 font-bold">
             {icon && (
               <div className="text-muted-foreground flex items-center gap-2">
@@ -77,11 +77,11 @@ export function PricingColumn({
             )}
             {name}
           </h2>
-          <p className="text-muted-foreground max-w-[220px] text-sm">
+          <p className="text-muted-foreground max-w-[240px] text-sm">
             {description}
           </p>
         </header>
-        <section className="flex flex-col gap-3">
+        <section className="flex flex-col gap-2.5 lg:min-h-[96px]">
           {originalPrice !== undefined && (
             <div className="flex h-6 items-baseline gap-1">
               <span className="text-muted-foreground text-lg font-medium line-through">
@@ -91,7 +91,7 @@ export function PricingColumn({
               </span>
             </div>
           )}
-          <div className="flex items-center gap-3 lg:flex-col lg:items-start xl:flex-row xl:items-center">
+          <div className="flex items-center gap-3">
             <div className="flex flex-col gap-1">
               <div className="flex items-baseline gap-1">
                 <span className="text-muted-foreground text-2xl font-bold">
@@ -101,11 +101,18 @@ export function PricingColumn({
               </div>
             </div>
             <div className="flex min-h-[40px] flex-col">
-              {price > 0 && (
+              {price > 0 ? (
                 <>
                   <span className="text-sm">one-time payment</span>
                   <span className="text-muted-foreground text-sm">
                     plus local taxes
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="text-sm">free forever</span>
+                  <span className="text-muted-foreground text-sm">
+                    open-source access
                   </span>
                 </>
               )}
@@ -120,7 +127,7 @@ export function PricingColumn({
         <Button variant={cta.variant} size="lg" asChild>
           <Link href={cta.href}>{cta.label}</Link>
         </Button>
-        <p className="text-muted-foreground min-h-[40px] max-w-[220px] text-sm">
+        <p className="text-muted-foreground max-w-[280px] text-sm lg:min-h-[72px]">
           {priceNote}
         </p>
         <hr className="border-input" />

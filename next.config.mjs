@@ -1,4 +1,17 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+import nextra from "nextra";
 
-export default nextConfig;
+const withNextra = nextra({
+  contentDirBasePath: "/docs",
+  search: true,
+});
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  turbopack: {
+    resolveAlias: {
+      "next-mdx-import-source-file": "./mdx-components.tsx",
+    },
+  },
+};
+
+export default withNextra(nextConfig);

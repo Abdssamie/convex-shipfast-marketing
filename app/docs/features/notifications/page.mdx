@@ -1,0 +1,38 @@
+import { Steps } from "nextra/components";
+
+# Notifications
+
+Notifications in FluxKit are designed to support both real-time product feedback and transactional email flows. This keeps the in-app experience aligned with user communication outside the product.
+
+## What this feature includes
+
+- Notification popover and dashboard surfaces.
+- Convex-powered event handling for app notifications.
+- Email feature modules and templates.
+- Welcome, invitation, verification, reset, and magic-link message flows.
+
+## How to use it
+
+<Steps>
+### Separate signal types
+
+Decide which events belong in-product, which belong in email, and which require both channels.
+
+### Configure provider delivery
+
+Connect your email provider and test every template in staging with production-like sender settings.
+
+### Set retention and unread rules
+
+Define how long notifications remain visible and when they are considered read or archived.
+
+### Monitor deliverability
+
+Track bounced email, throttling, and template failures so product messages stay reliable.
+</Steps>
+
+## Operational advice
+
+- Do not send the same event across multiple channels unless the urgency justifies it.
+- Keep notification copy short and action-oriented.
+- Measure click-through from both app notifications and emails.

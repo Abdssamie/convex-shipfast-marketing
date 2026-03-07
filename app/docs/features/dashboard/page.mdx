@@ -1,0 +1,28 @@
+import { Cards } from "nextra/components";
+
+# Dashboard
+
+The dashboard layer gives FluxKit its day-to-day product surface. It includes an app shell, analytics widgets, settings pages, data tables, and interaction patterns for authenticated users.
+
+## What this feature includes
+
+- A structured dashboard layout.
+- Analytics and summary cards.
+- Data tables and interactive chart components.
+- Settings sections for user, organization, billing, notifications, and appearance.
+- Shared UI primitives for dialogs, sheets, forms, tables, and navigation.
+
+## How to use it
+
+- Start with the base layout and keep section-level routing consistent.
+- Treat settings pages as independent modules so teams can evolve them without destabilizing the shell.
+- Use the existing UI primitives instead of introducing parallel component patterns.
+- Keep dashboard metrics tied to real backend queries before exposing them in production.
+
+## Related areas
+
+<Cards num={2}>
+  <Cards.Card title="Organizations" href="/docs/features/organizations" />
+  <Cards.Card title="Billing" href="/docs/features/billing" />
+  <Cards.Card title="Notifications" href="/docs/features/notifications" />
+</Cards>

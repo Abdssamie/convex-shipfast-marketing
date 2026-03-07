@@ -1,0 +1,21 @@
+import { Cards } from "nextra/components";
+
+# Feature Guides
+
+FluxKit is organized around a small set of SaaS capabilities that cover most product launches. Each guide explains what the feature does, where it lives, and how to adopt it in a production implementation.
+
+<Cards num={2}>
+  <Cards.Card title="Authentication" href="/docs/features/authentication" />
+  <Cards.Card title="Organizations" href="/docs/features/organizations" />
+  <Cards.Card title="Billing" href="/docs/features/billing" />
+  <Cards.Card title="Dashboard" href="/docs/features/dashboard" />
+  <Cards.Card title="Notifications" href="/docs/features/notifications" />
+</Cards>
+
+## Feature model
+
+- Identity and access are handled first.
+- Teams and organizations layer on top of authenticated users.
+- Billing controls plan access and monetization.
+- Dashboard surfaces product activity and settings.
+- Notifications keep users informed across app and email touchpoints.

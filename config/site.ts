@@ -1,19 +1,33 @@
+const productionUrl = "https://flux-kut.dev";
+const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? process.env.VERCEL_PROJECT_PRODUCTION_URL.startsWith("http")
+    ? process.env.VERCEL_PROJECT_PRODUCTION_URL
+    : `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : undefined;
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.SITE_URL ||
+  vercelUrl ||
+  (process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : productionUrl);
+
 export const siteConfig = {
   name: "FluxKit",
-  url: "https://fluxkit.dev",
-  getStartedUrl: "https://github.com/fluxkit/fluxkit",
-  docsUrl: "https://docs.fluxkit.dev",
-  ogImage: "https://fluxkit.dev/og.jpg",
+  url: siteUrl,
+  getStartedUrl: "https://github.com/fluxkit-hq/fluxkit",
+  docsUrl: "/docs",
+  ogImage: `${siteUrl}/og.jpg`,
   description:
     "Production-ready SaaS starter kit with authentication, billing, teams, and real-time features. Built with Next.js, Convex, and TypeScript.",
   links: {
     twitter: "https://twitter.com/fluxkit",
-    github: "https://github.com/fluxkit/fluxkit",
+    github: "https://github.com/fluxkit-hq/fluxkit",
     discord: "https://discord.gg/fluxkit",
-    email: "mailto:hello@fluxkit.dev",
+    email: "mailto:hello@flux-kut.dev",
   },
   pricing: {
-    free: "https://github.com/fluxkit/fluxkit",
+    free: "https://github.com/fluxkit-hq/fluxkit",
     pro: "/#pricing",
     proPolar: "/#pricing",
   },

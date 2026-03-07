@@ -74,7 +74,7 @@ npm run build
 
 Get started with the core features and build your SaaS application.
 
-[View on GitHub](https://github.com/fluxkit/fluxkit)
+[View on GitHub](https://github.com/fluxkit-hq/fluxkit)
 
 ### Pro ($399 one-time)
 
