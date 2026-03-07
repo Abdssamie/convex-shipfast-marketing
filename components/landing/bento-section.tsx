@@ -8,7 +8,15 @@ import {
 import React from "react";
 
 import { AnimatedList } from "@/components/ui/animated-list";
+import { Badge } from "@/components/ui/badge";
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -126,13 +134,17 @@ export default function BentoSection() {
       cta: "View pricing",
       className: "lg:col-span-1",
       background: (
-        <div className="h-36 w-full p-5">
-          <div className="bg-background/80 border-border/70 h-full rounded-lg border p-3">
-            <p className="text-muted-foreground text-xs">Premium surfaces</p>
-            <p className="mt-1 text-2xl font-semibold">Landing + App</p>
-            <p className="mt-1 text-xs text-emerald-500">Ready for launch polish</p>
-          </div>
-        </div>
+        <Card className="mx-5 mt-5 border-border/60 bg-background/80 shadow-none">
+          <CardHeader className="gap-2 p-4">
+            <Badge variant="outline" className="w-fit text-[10px] tracking-wide uppercase">
+              Premium surfaces
+            </Badge>
+            <CardTitle className="text-2xl">Landing + App</CardTitle>
+            <CardDescription className="text-emerald-500">
+              Ready for launch polish
+            </CardDescription>
+          </CardHeader>
+        </Card>
       ),
     },
     {
@@ -144,15 +156,19 @@ export default function BentoSection() {
       cta: "Explore backend",
       className: "lg:col-span-1",
       background: (
-        <div className="h-36 w-full p-5">
-          <div className="bg-background/80 border-border/70 h-full rounded-lg border p-3">
-            <p className="text-muted-foreground text-xs">Query sync latency</p>
-            <p className="mt-1 text-2xl font-semibold">&lt; 200ms</p>
-            <p className="text-muted-foreground mt-1 text-xs">
+        <Card className="mx-5 mt-5 border-border/60 bg-background/80 shadow-none">
+          <CardHeader className="gap-2 p-4 pb-2">
+            <Badge variant="outline" className="w-fit text-[10px] tracking-wide uppercase">
+              Query sync latency
+            </Badge>
+            <CardTitle className="text-3xl">&lt; 200ms</CardTitle>
+          </CardHeader>
+          <CardContent className="px-4 pb-4">
+            <CardDescription>
               Reactive updates across dashboard widgets
-            </p>
-          </div>
-        </div>
+            </CardDescription>
+          </CardContent>
+        </Card>
       ),
     },
     {
@@ -164,19 +180,19 @@ export default function BentoSection() {
       cta: "See ops stack",
       className: "lg:col-span-1",
       background: (
-        <div className="h-36 w-full p-5">
-          <div className="bg-background/80 border-border/70 h-full space-y-2 rounded-lg border p-3 text-xs">
-            <div className="rounded-md border border-emerald-500/30 px-2 py-1 text-emerald-500">
+        <Card className="mx-5 mt-5 border-border/60 bg-background/80 shadow-none">
+          <CardContent className="flex flex-wrap gap-2 p-4">
+            <Badge variant="outline" className="border-emerald-500/30 text-emerald-500">
               Sentry connected
-            </div>
-            <div className="rounded-md border border-emerald-500/30 px-2 py-1 text-emerald-500">
+            </Badge>
+            <Badge variant="outline" className="border-emerald-500/30 text-emerald-500">
               Upstash enabled
-            </div>
-            <div className="rounded-md border border-emerald-500/30 px-2 py-1 text-emerald-500">
+            </Badge>
+            <Badge variant="outline" className="border-emerald-500/30 text-emerald-500">
               Analytics ready
-            </div>
-          </div>
-        </div>
+            </Badge>
+          </CardContent>
+        </Card>
       ),
     },
     {
@@ -188,16 +204,18 @@ export default function BentoSection() {
       cta: "Read docs",
       className: "lg:col-span-1",
       background: (
-        <div className="h-36 w-full p-5">
-          <div className="bg-background/80 border-border/70 h-full rounded-lg border p-3 text-xs">
-            <p className="text-muted-foreground">Included foundations</p>
-            <ul className="mt-2 space-y-1">
-              <li>Auth + Teams</li>
-              <li>Realtime + Notifications</li>
-              <li>Notifications + Emails</li>
-            </ul>
-          </div>
-        </div>
+        <Card className="mx-5 mt-5 border-border/60 bg-background/80 shadow-none">
+          <CardHeader className="gap-3 p-4 pb-2">
+            <Badge variant="outline" className="w-fit text-[10px] tracking-wide uppercase">
+              Included foundations
+            </Badge>
+          </CardHeader>
+          <CardContent className="flex flex-wrap gap-2 px-4 pb-4">
+            <Badge variant="secondary">Auth + Teams</Badge>
+            <Badge variant="secondary">Realtime + Notifications</Badge>
+            <Badge variant="secondary">Notifications + Emails</Badge>
+          </CardContent>
+        </Card>
       ),
     },
   ];
