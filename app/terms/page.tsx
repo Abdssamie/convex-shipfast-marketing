@@ -1,8 +1,8 @@
-import { legalConfig } from "@/config/legal";
-import Link from "next/link";
 import { AlertCircle, Mail } from "lucide-react";
-import Navbar from "@/components/sections/navbar/default";
+
 import Footer from "@/components/sections/footer/default";
+import Navbar from "@/components/sections/navbar/default";
+import { legalConfig, legalLastUpdated } from "@/config/legal";
 
 export default function TermsPage() {
     const { company, product, terms: termsSection } = legalConfig;
@@ -16,7 +16,7 @@ export default function TermsPage() {
                         <div className="text-center mb-12">
                             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Terms of Service</h1>
                             <p className="text-muted-foreground">
-                                Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                                Last updated: {legalLastUpdated}
                             </p>
                         </div>
 
@@ -25,7 +25,7 @@ export default function TermsPage() {
                                 <h2 className="text-2xl font-semibold mb-4 border-b pb-2">1. Introduction</h2>
                                 <div className="space-y-4">
                                     <p>
-                                        These Terms of Service govern the use of {company.name}'s services. By accessing our platform, you agree to be bound by these terms.
+                                        These Terms of Service govern the use of the {company.name} services. By accessing our platform, you agree to be bound by these terms.
                                     </p>
                                     <p>
                                         <span className="font-medium text-foreground">{company.name}</span> is a {product.type} platform that provides: {product.description}

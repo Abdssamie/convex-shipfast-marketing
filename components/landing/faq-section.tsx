@@ -14,7 +14,7 @@ import { Container } from "./container";
 const faqs = [
   {
     q: "What is included in the open-source version?",
-    a: "The open-source version gives you the core application foundation, backend flows, authentication baseline, billing wiring, and the main implementation starting point for building your product.",
+    a: "The open-source version gives you the core application foundation, backend flows, authentication baseline, organizations, realtime architecture, and the main implementation starting point for building your product.",
   },
   {
     q: "What do I get with FluxKit Pro?",

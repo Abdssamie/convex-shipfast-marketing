@@ -1,12 +1,12 @@
 "use client"
 
+import { AnimatePresence, motion, type MotionProps } from "motion/react"
 import React, {
+    type ComponentPropsWithoutRef,
     useEffect,
     useMemo,
     useState,
-    type ComponentPropsWithoutRef,
 } from "react"
-import { AnimatePresence, motion, type MotionProps } from "motion/react"
 
 import { cn } from "@/lib/utils"
 

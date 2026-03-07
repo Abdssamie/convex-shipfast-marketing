@@ -1,18 +1,17 @@
 import {
   BellRingIcon,
-  CircleDollarSignIcon,
-  DatabaseIcon,
-  KeyRoundIcon,
-  ShieldCheckIcon,
   BlocksIcon,
+  DatabaseIcon,
+  LayoutTemplateIcon,
+  ShieldCheckIcon,
 } from "lucide-react";
+import React from "react";
 
+import { AnimatedList } from "@/components/ui/animated-list";
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 import { Section } from "@/components/ui/section";
 import { siteConfig } from "@/config/site";
-import { AnimatedList } from "@/components/ui/animated-list";
 import { cn } from "@/lib/utils";
-import React from "react";
 
 interface Item {
   name: string;
@@ -119,19 +118,19 @@ export default function BentoSection() {
       ),
     },
     {
-      Icon: CircleDollarSignIcon,
-      name: "Revenue-ready billing",
+      Icon: LayoutTemplateIcon,
+      name: "Premium landing and dashboard",
       description:
-        "Polar subscription lifecycle and usage-aware billing patterns so you can monetize on day one.",
+        "The paid tier adds polished conversion surfaces and app layouts so you can ship a serious product presentation without redesigning the frontend.",
       href: "#pricing",
       cta: "View pricing",
       className: "lg:col-span-1",
       background: (
         <div className="h-36 w-full p-5">
           <div className="bg-background/80 border-border/70 h-full rounded-lg border p-3">
-            <p className="text-muted-foreground text-xs">Current MRR</p>
-            <p className="mt-1 text-2xl font-semibold">$12,480</p>
-            <p className="mt-1 text-xs text-emerald-500">+24% this month</p>
+            <p className="text-muted-foreground text-xs">Premium surfaces</p>
+            <p className="mt-1 text-2xl font-semibold">Landing + App</p>
+            <p className="mt-1 text-xs text-emerald-500">Ready for launch polish</p>
           </div>
         </div>
       ),
@@ -194,7 +193,7 @@ export default function BentoSection() {
             <p className="text-muted-foreground">Included foundations</p>
             <ul className="mt-2 space-y-1">
               <li>Auth + Teams</li>
-              <li>Billing + Webhooks</li>
+              <li>Realtime + Notifications</li>
               <li>Notifications + Emails</li>
             </ul>
           </div>

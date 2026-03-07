@@ -14,22 +14,26 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(siteConfig.url),
   description: siteConfig.description,
+  applicationName: siteConfig.name,
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
-    "Convex ShipFast",
+    "FluxKit",
     "SaaS boilerplate",
     "Next.js 16",
     "Convex",
-    "Better Auth",
-    "Polar billing",
+    "Authentication",
+    "Teams",
     "Dashboard template",
   ],
   authors: [
     {
-      name: "Convex ShipFast",
+      name: "FluxKit",
       url: siteConfig.getStartedUrl,
     },
   ],
-  creator: "Convex ShipFast",
+  creator: "FluxKit",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -51,7 +55,6 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: "@convex",
   },
   icons: {
     icon: "/favicon.svg",

@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { getAllBlogPosts } from "@/lib/blog-posts";
-import Navbar from "@/components/sections/navbar/default";
+
 import Footer from "@/components/sections/footer/default";
+import Navbar from "@/components/sections/navbar/default";
 import { LayoutLines } from "@/components/ui/layout-lines";
+import { getAllBlogPosts } from "@/lib/blog-posts";
 
 export default function BlogPage() {
   const posts = getAllBlogPosts();

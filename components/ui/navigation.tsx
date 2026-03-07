@@ -7,7 +7,6 @@ import { ReactNode } from "react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import PlaceholderLogo from "./placeholder-logo";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,6 +16,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "./navigation-menu";
+import PlaceholderLogo from "./placeholder-logo";
 
 interface ComponentItem {
   title: string;
@@ -61,11 +61,6 @@ export default function Navigation({
       title: "FAQ",
       isLink: true,
       href: "/#faq",
-    },
-    {
-      title: "Docs",
-      isLink: true,
-      href: siteConfig.docsUrl,
     },
     {
       title: "GitHub",

@@ -71,6 +71,22 @@ export interface LegalConfig {
     };
 }
 
+const legalSiteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || "https://flux-kut.dev";
+const legalContactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@flux-kut.dev";
+const legalBusinessName = process.env.NEXT_PUBLIC_LEGAL_BUSINESS_NAME || "FluxKit";
+const legalRepresentative = process.env.NEXT_PUBLIC_LEGAL_REPRESENTATIVE || legalBusinessName;
+const legalBusinessAddress =
+    process.env.NEXT_PUBLIC_LEGAL_ADDRESS ||
+    `Business address available on request at ${legalContactEmail}.`;
+const legalRegistrationNumber =
+    process.env.NEXT_PUBLIC_LEGAL_REGISTRATION_NUMBER || "Available on request";
+const legalPhone =
+    process.env.NEXT_PUBLIC_LEGAL_PHONE || "Available on request by email";
+const legalJurisdiction = (process.env.NEXT_PUBLIC_LEGAL_JURISDICTION as LegalConfig["company"]["jurisdiction"] | undefined) || "INT";
+const legalDpo = process.env.NEXT_PUBLIC_DPO_EMAIL;
+
+export const legalLastUpdated = "March 7, 2026";
+
 // Helper to get analytics provider info based on environment
 function getAnalyticsConfig() {
     const provider = "none";
@@ -91,28 +107,28 @@ function getAnalyticsConfig() {
 
 export const legalConfig: LegalConfig = {
     company: {
-        name: "FluxKit",
-        legalForm: "LLC",
-        registrationNumber: "Pending",
-        address: "Online",
-        representative: "FluxKit Team",
-        email: "contact@fluxkit.dev",
-        phone: "N/A",
-        website: "https://fluxkit.dev",
-        dpo: "dpo@fluxkit.dev",
-        jurisdiction: "US",
+        name: legalBusinessName,
+        legalForm: "Independent software business",
+        registrationNumber: legalRegistrationNumber,
+        address: legalBusinessAddress,
+        representative: legalRepresentative,
+        email: legalContactEmail,
+        phone: legalPhone,
+        website: legalSiteUrl,
+        dpo: legalDpo,
+        jurisdiction: legalJurisdiction,
     },
     product: {
         name: "FluxKit",
-        description: "FluxKit is a premium SaaS boilerplate that helps developers build applications faster. Our all-in-one solution includes authentication, payments, and a real-time database.",
+        description: "FluxKit is a SaaS starter that helps developers ship production-ready applications faster with authentication, organizations, realtime architecture, and polished frontend surfaces.",
         type: "boilerplate",
         targetAudience: "Developers and startups",
         features: [
             "Complete Authentication",
-            "Payments via Stripe/Polar",
+            "Organizations and roles",
             "Convex Database",
             "Shadcn UI Interface",
-            "Professional Email Sending",
+            "Documentation and deployment guides",
         ],
     },
     cookies: {
@@ -138,12 +154,12 @@ export const legalConfig: LegalConfig = {
     },
     privacy: {
         dataController: {
-            identity: "FluxKit",
-            address: "Online",
-            representative: "FluxKit Team",
-            email: "contact@fluxkit.dev",
-            phone: "N/A",
-            dpo: "dpo@fluxkit.dev",
+            identity: legalBusinessName,
+            address: legalBusinessAddress,
+            representative: legalRepresentative,
+            email: legalContactEmail,
+            phone: legalPhone,
+            dpo: legalDpo,
         },
         dataCollection: {
             categories: [
@@ -159,19 +175,13 @@ export const legalConfig: LegalConfig = {
                     purpose: "Security, technical analysis",
                     legalBasis: "Legitimate interest",
                 },
-                {
-                    name: "Transaction Data",
-                    items: ["Order History"],
-                    purpose: "Order fulfillment, billing",
-                    legalBasis: "Performance of a contract",
-                },
             ],
         },
         processing: {
             purposes: [
                 { purpose: "User account management", basis: "Performance of a contract", retention: "Duration of the relationship + 3 years" },
-                { purpose: "Payment processing", basis: "Performance of a contract", retention: "10 years (legal obligation)" },
                 { purpose: "Customer support", basis: "Legitimate interest", retention: "Duration of the relationship + 3 years" },
+                { purpose: "Service security and abuse prevention", basis: "Legitimate interest", retention: "Security log retention based on operational need" },
             ],
         },
         recipients: {
@@ -179,7 +189,11 @@ export const legalConfig: LegalConfig = {
             external: [
                 { name: "Vercel", purpose: "Hosting", location: "USA (DPF)" },
                 { name: "Convex", purpose: "Database", location: "USA (DPF)" },
-                { name: "Polar/Stripe", purpose: "Payment", location: "USA (DPF)" },
+                {
+                    name: "Polar",
+                    purpose: "Payment processing when checkout is enabled",
+                    location: "USA/EEA depending on service configuration",
+                },
             ],
         },
         internationalTransfer: {
@@ -197,7 +211,7 @@ export const legalConfig: LegalConfig = {
                 "Right to data portability",
                 "Right to object",
             ],
-            exercise: "By email at contact@fluxkit.dev",
+            exercise: `By email at ${legalContactEmail}`,
             responseTime: "Maximum 1 month",
         },
     },
@@ -220,7 +234,7 @@ export const legalConfig: LegalConfig = {
             features: [
                 "Ready-to-use UI Components",
                 "Pre-configured authentication",
-                "Payment integration",
+                "Organization and dashboard foundations",
                 "GitHub repository access",
             ],
             limitations: [
@@ -228,9 +242,9 @@ export const legalConfig: LegalConfig = {
             ],
         },
         payment: {
-            required: true,
-            methods: ["Credit Card (Stripe/Polar)"],
-            refund: "No refunds after downloading or accessing the source code.",
+            required: false,
+            methods: [],
+            refund: "Refund terms will be published on the checkout and order pages when paid access is enabled.",
         },
         liability: {
             limitations: [
@@ -254,6 +268,6 @@ export const legalConfig: LegalConfig = {
             ],
             consequences: "Immediate suspension of the license and access to updates.",
         },
-        contact: "For any questions, contact us at contact@fluxkit.dev",
+        contact: `For any questions, contact us at ${legalContactEmail}`,
     },
 };

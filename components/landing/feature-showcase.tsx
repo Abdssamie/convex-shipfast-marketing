@@ -47,10 +47,10 @@ const showcaseData = {
     },
     {
       id: "customization",
-      title: "Authentication and payments",
+      title: "Authentication and account flows",
       description:
-        "Secure account flows and monetization primitives come preconfigured so you can ship sign-in, billing, and upgrade paths earlier.",
-      highlight: "Revenue-ready flows",
+        "Secure sign-in, session handling, and account lifecycle patterns are already framed so you can ship access control and user onboarding earlier.",
+      highlight: "Account foundation",
       media: {
         type: "video",
         src: "/theme-customized-showcase-video.mp4",

@@ -1,5 +1,7 @@
-import { siteConfig } from "@/config/site";
 import { GithubIcon, SparklesIcon } from "lucide-react";
+
+import { siteConfig } from "@/config/site";
+
 import { PricingColumn } from "../ui/pricing-column";
 import { Section } from "../ui/section";
 

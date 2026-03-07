@@ -18,12 +18,12 @@ export const blogPosts: BlogPost[] = [
     content: `
 FluxKit is a modern SaaS starter kit that leverages Convex's real-time backend to help you build and ship faster. 
 
-We've spent months building SaaS products and identified the common patterns that every project needs: authentication, payments, user management, and real-time features. FluxKit packages all of this into a production-ready foundation.
+We've spent months building SaaS products and identified the common patterns that every project needs: authentication, user management, real-time features, and launch-ready frontend surfaces. FluxKit packages all of this into a production-ready foundation.
 
 With FluxKit, you get:
 - Real-time database with Convex
 - Authentication out of the box
-- Stripe integration for payments
+- Billing and pricing surfaces ready for provider wiring
 - Beautiful UI components with shadcn/ui
 - Type-safe API with full TypeScript support
 
@@ -71,7 +71,7 @@ Last week, we watched a developer go from idea to paying customers in just 7 day
 Started with FluxKit's foundation and customized the branding, colors, and landing page to match their vision.
 
 **Day 3-4: Core Features**
-Built the unique features that differentiate their product. Because authentication, payments, and database were already handled, they could focus entirely on their core value proposition.
+Built the unique features that differentiate their product. Because authentication, product structure, and database foundations were already handled, they could focus entirely on their core value proposition.
 
 **Day 5-6: Testing and Polish**
 Tested the application, fixed bugs, and polished the user experience. The type-safe architecture caught most issues before they reached production.

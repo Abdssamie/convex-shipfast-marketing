@@ -1,8 +1,8 @@
 import Footer from "../../components/sections/footer/default";
 import Navbar from "../../components/sections/navbar/default";
-import { Section } from "../../components/ui/section";
-import { LayoutLines } from "../../components/ui/layout-lines";
 import { Badge } from "../../components/ui/badge";
+import { LayoutLines } from "../../components/ui/layout-lines";
+import { Section } from "../../components/ui/section";
 
 interface ChangelogEntry {
   version: string;
@@ -19,7 +19,7 @@ const changelogEntries: ChangelogEntry[] = [
     date: "February 2026",
     added: [
       "Complete authentication system with email, OAuth, and magic links",
-      "Stripe billing integration with subscription management",
+      "Billing settings and pricing surfaces prepared for provider integration",
       "Multi-tenancy support with team workspaces",
       "Real-time collaboration features with live cursors and presence",
       "Comprehensive admin dashboard with analytics",
@@ -52,14 +52,14 @@ const changelogEntries: ChangelogEntry[] = [
     added: [
       "Beta release with core features",
       "Authentication and user management",
-      "Basic billing integration",
+      "Initial billing and plan-management UI foundations",
       "Team workspace foundations",
       "Real-time data synchronization",
       "Initial component library",
     ],
     fixed: [
       "Authentication flow edge cases",
-      "Billing webhook handling",
+      "Account settings and plan-surface edge cases",
       "Real-time connection stability",
     ],
     changed: [

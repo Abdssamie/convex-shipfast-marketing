@@ -48,7 +48,6 @@ export default function Navbar({
     { text: "Features", href: "/#features" },
     { text: "Pricing", href: "/#pricing" },
     { text: "FAQ", href: "/#faq" },
-    { text: "Documentation", href: siteConfig.docsUrl },
   ],
   actions = [
     { text: "GitHub", href: siteConfig.links.github, isButton: false },

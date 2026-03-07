@@ -1,5 +1,7 @@
-import { siteConfig } from "@/config/site";
 import { ArrowRightIcon } from "lucide-react";
+
+import { siteConfig } from "@/config/site";
+
 import { Section } from "../ui/section";
 import { Container } from "./container";
 

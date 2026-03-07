@@ -111,6 +111,13 @@
 }
 
 :root {
+  --font-inter:
+    "Suisse Intl", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial,
+    sans-serif;
+  --font-ibm-plex-mono:
+    "IBM Plex Mono", "SFMono-Regular", "SF Mono", Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
   /* Accent colors */
   --brand: oklch(62% 0.2 255);
   --brand-foreground: oklch(0.985 0 0);

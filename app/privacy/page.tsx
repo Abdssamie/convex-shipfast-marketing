@@ -1,8 +1,8 @@
-import { legalConfig } from "@/config/legal";
-import Link from "next/link";
-import { ShieldCheck, Mail, MapPin } from "lucide-react";
-import Navbar from "@/components/sections/navbar/default";
+import { Mail,ShieldCheck } from "lucide-react";
+
 import Footer from "@/components/sections/footer/default";
+import Navbar from "@/components/sections/navbar/default";
+import { legalConfig, legalLastUpdated } from "@/config/legal";
 
 export default function PrivacyPolicyPage() {
     const { company, product, privacy: privacySection } = legalConfig;
@@ -23,7 +23,7 @@ export default function PrivacyPolicyPage() {
                         <div className="text-center mb-12">
                             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Privacy Policy</h1>
                             <p className="text-muted-foreground">
-                                Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                                Last updated: {legalLastUpdated}
                             </p>
                         </div>
 

@@ -1,4 +1,5 @@
 import { CheckIcon } from "lucide-react";
+
 import FluxkitLogo from "../ui/fluxkit-logo";
 import { Section } from "../ui/section";
 import { Container } from "./container";
@@ -7,7 +8,7 @@ export function TrustStrip() {
     const points = [
         "Commercial SaaS starter, not a demo template",
         "Built on Next.js 16, Convex, React 19, TypeScript",
-        "Auth, billing, teams, realtime, ops included",
+        "Auth, teams, realtime, and ops foundations included",
     ];
 
     return (

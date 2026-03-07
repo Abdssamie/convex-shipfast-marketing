@@ -1,11 +1,12 @@
+import { CheckCircle2 } from "lucide-react";
+
 import { Section } from "../ui/section";
 import { Container } from "./container";
-import { CheckCircle2 } from "lucide-react";
 
 export function BuildVsBuy() {
     const rows = [
         ["Auth + recovery + verification", "2-3 weeks", "Included"],
-        ["Billing + subscription management", "2-3 weeks", "Included"],
+        ["Pricing + billing UI foundations", "1-2 weeks", "Included"],
         ["Organizations + permissions", "3-4 weeks", "Included"],
         ["Realtime backend + notifications", "2-3 weeks", "Included"],
         ["Ops stack (monitoring + rate limiting)", "1-2 weeks", "Included"],

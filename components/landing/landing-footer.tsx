@@ -1,4 +1,7 @@
+import Link from "next/link";
+
 import { siteConfig } from "@/config/site";
+
 import FluxkitLogo from "../ui/fluxkit-logo";
 import { Container } from "./container";
 
@@ -17,13 +20,11 @@ export function LandingFooter() {
             links: [
                 { label: "Documentation", href: siteConfig.docsUrl },
                 { label: "GitHub", href: siteConfig.links.github },
-                { label: "Discord", href: siteConfig.links.discord },
             ],
         },
         {
             title: "Company",
             links: [
-                { label: "Twitter", href: siteConfig.links.twitter },
                 { label: "Contact", href: siteConfig.links.email },
             ],
         },
@@ -34,13 +35,13 @@ export function LandingFooter() {
             <Container>
                 <div className="grid gap-8 md:grid-cols-4">
                     <div>
-                        <a
+                        <Link
                             href="/"
                             className="mb-3 inline-flex items-center gap-2 text-lg font-semibold"
                         >
                             <FluxkitLogo size={24} className="rounded-md" />
                             FluxKit
-                        </a>
+                        </Link>
                         <p className="text-muted-foreground text-sm leading-relaxed">
                             Commercial SaaS starter for teams building with Next.js and
                             Convex.

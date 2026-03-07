@@ -19,17 +19,14 @@ export const siteConfig = {
   docsUrl: "/docs",
   ogImage: `${siteUrl}/og.jpg`,
   description:
-    "Production-ready SaaS starter kit with authentication, billing, teams, and real-time features. Built with Next.js, Convex, and TypeScript.",
+    "Production-ready SaaS starter kit with authentication, teams, dashboard foundations, and real-time features. Built with Next.js, Convex, and TypeScript.",
   links: {
-    twitter: "https://twitter.com/fluxkit",
     github: "https://github.com/fluxkit-hq/fluxkit",
-    discord: "https://discord.gg/fluxkit",
     email: "mailto:hello@flux-kut.dev",
   },
   pricing: {
     free: "https://github.com/fluxkit-hq/fluxkit",
     pro: "/#pricing",
-    proPolar: "/#pricing",
   },
   stats: {
     github: 0,

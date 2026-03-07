@@ -1,5 +1,5 @@
 import { type VariantProps } from "class-variance-authority";
-import { ChevronRightIcon, StarIcon } from "lucide-react";
+import { ChevronRightIcon } from "lucide-react";
 import { ReactNode } from "react";
 
 import { siteConfig } from "@/config/site";
@@ -53,7 +53,7 @@ export default function Hero({
         New
       </span>
       <span className="text-muted-foreground font-semibold">
-        Convex Real-Time DB, Stripe Billing, Shadcn UI & more!
+        Convex real-time backend, premium UI surfaces, docs, and more.
       </span>
       <div className="ml-1 flex items-center justify-center rounded-full bg-black/5 p-1 dark:bg-white/10">
         <ChevronRightIcon className="text-foreground size-3 transition-transform group-hover:translate-x-0.5" />

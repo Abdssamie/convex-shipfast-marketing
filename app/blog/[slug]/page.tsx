@@ -1,9 +1,10 @@
-import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getBlogPost, getAllBlogPosts } from "@/lib/blog-posts";
-import Navbar from "@/components/sections/navbar/default";
+import { notFound } from "next/navigation";
+
 import Footer from "@/components/sections/footer/default";
+import Navbar from "@/components/sections/navbar/default";
 import { LayoutLines } from "@/components/ui/layout-lines";
+import { getAllBlogPosts,getBlogPost } from "@/lib/blog-posts";
 
 export async function generateStaticParams() {
   const posts = getAllBlogPosts();
@@ -12,8 +13,13 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = getBlogPost(params.slug);
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = getBlogPost(slug);
 
   if (!post) {
     notFound();
