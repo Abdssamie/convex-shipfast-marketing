@@ -22,10 +22,8 @@ export default function Home() {
       <Hero />
       <TechStackStrip />
       <BentoSection />
-      <TrustStrip />
-      <CommercialValue />
-      <ProductTour />
       <FeatureShowcase />
+      <ProductTour />
       <FeatureCatalog />
       <BuildVsBuy />
       <SocialProof />
