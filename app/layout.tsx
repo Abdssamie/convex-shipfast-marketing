@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
   },
   icons: {
-    icon: "/favicon.svg",
+    icon: "/fluxkit.png",
     apple: "/apple-touch-icon.png",
   },
 };
