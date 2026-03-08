@@ -1,4 +1,4 @@
-import { GithubIcon, SparklesIcon } from "lucide-react";
+import { BriefcaseBusinessIcon, SparklesIcon } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
 
@@ -6,57 +6,130 @@ import { PricingColumn } from "../ui/pricing-column";
 import { Section } from "../ui/section";
 
 export function PricingSection() {
+  const comparisonRows = [
+    {
+      feature: "Auth flows wired",
+      pro: true,
+      teams: true,
+    },
+    {
+      feature: "Organizations + roles",
+      pro: true,
+      teams: true,
+    },
+    {
+      feature: "Convex realtime backend",
+      pro: true,
+      teams: true,
+    },
+    {
+      feature: "Billing groundwork",
+      pro: true,
+      teams: true,
+    },
+    {
+      feature: "Setup docs + guidance",
+      pro: true,
+      teams: true,
+    },
+    {
+      feature: "Shared UI primitives",
+      pro: true,
+      teams: true,
+    },
+    {
+      feature: "Polished landing page",
+      pro: true,
+      teams: true,
+    },
+    {
+      feature: "Dashboard foundations",
+      pro: true,
+      teams: true,
+    },
+    {
+      feature: "Account + billing views",
+      pro: true,
+      teams: true,
+    },
+    {
+      feature: "Settings screens",
+      pro: true,
+      teams: true,
+    },
+    {
+      feature: "Pricing, FAQ, CTA",
+      pro: true,
+      teams: true,
+    },
+    {
+      feature: "Premium styling system",
+      pro: true,
+      teams: true,
+    },
+    {
+      feature: "Commercial license + updates",
+      pro: true,
+      teams: true,
+    },
+    {
+      feature: "Team commercial use",
+      pro: false,
+      teams: true,
+    },
+    {
+      feature: "Team-wide usage",
+      pro: false,
+      teams: true,
+    },
+    {
+      feature: "Multi-seat access",
+      pro: false,
+      teams: true,
+    },
+  ];
+
   const plans = [
     {
-      name: "FluxKit Open Source",
-      icon: <GithubIcon className="size-4" />,
-      description: "Backend foundation for free",
-      price: 0,
-      priceNote: "Free access to the open-source app foundation.",
+      name: "FluxKit Pro",
+      icon: <SparklesIcon className="size-4" />,
+      description: "Single-user commercial license",
+      price: 99,
+      originalPrice: 149,
+      promotionText: "One-time license",
+      priceNote:
+        "One-time license for solo builders.",
       cta: {
-        variant: "glow" as const,
-        label: "Get Open Source",
-        href: siteConfig.pricing.free,
+        variant: "default" as const,
+        label: "Get Pro",
+        href: siteConfig.pricing.pro,
       },
-      features: [
-        "Authentication flows and account foundations",
-        "Organizations, invites, and role support",
-        "Billing backend logic and lifecycle wiring",
-        "Convex realtime patterns and core app architecture",
-        "TypeScript, Next.js, and shared UI baseline",
-        "Documentation and setup guidance",
-      ],
+      features: comparisonRows.map((row) => ({
+        label: row.feature,
+        included: row.pro,
+      })),
       variant: "default" as const,
       className: "w-full max-w-lg",
     },
     {
-      name: "FluxKit Pro",
-      icon: <SparklesIcon className="size-4" />,
-      description: "Premium landing page and dashboard",
-      price: 299,
-      promotionText: "Most popular",
-      priceNote: "One-time purchase. Unlimited projects. Lifetime updates.",
+      name: "FluxKit Teams",
+      icon: <BriefcaseBusinessIcon className="size-4" />,
+      description: "Multi-seat internal team license",
+      price: 249,
+      originalPrice: 349,
+      promotionText: "Team license",
+      priceNote:
+        "One-time license for teams and collaborators.",
       cta: {
         variant: "default" as const,
-        label: "Buy FluxKit",
-        href: siteConfig.pricing.pro,
+        label: "Get Teams",
+        href: siteConfig.pricing.teams,
       },
-      features: [
-        "Premium marketing landing page system",
-        "Production-ready dashboard UI and app shell",
-        "Polished hero, pricing, FAQ, and CTA sections",
-        "Premium page layouts for launch and conversion",
-        "Refined dashboard screens and settings experience",
-        "Built-in navigation, structure, and responsive polish",
-        "Ready-made SaaS presentation layer for demos and sales",
-        "Higher-end visual treatment across public and app surfaces",
-        "Refined SaaS navigation and page composition",
-        "Commercial-grade presentation and conversion surfaces",
-        "Polished user-facing layouts for faster launch",
-        "Lifetime updates for premium frontend surfaces",
-        "Commercial license with unlimited project usage",
-      ],
-      variant: "default" as const,
+      features: comparisonRows.map((row) => ({
+        label: row.feature,
+        included: row.teams,
+      })),
+      variant: "glow-brand" as const,
       className:
         "w-full max-w-lg border-brand/30 bg-card lg:-translate-y-2 lg:scale-[1.02]",
     },
@@ -70,11 +143,12 @@ export function PricingSection() {
             Pricing
           </p>
           <h2 className="text-3xl leading-tight font-semibold sm:text-5xl sm:leading-tight">
-            Start free. Upgrade once.
+            Choose the package that fits how you ship.
           </h2>
           <p className="text-muted-foreground text-md max-w-[700px] font-medium sm:text-xl">
-            Start with the open-source backend and app foundation, then upgrade
-            when you want the premium landing page and dashboard experience.
+            One-time licenses only. Pro is for solo builders. Teams is the same
+            product packaged for people building with collaborators instead of
+            alone.
           </p>
         </div>
 
@@ -86,6 +160,7 @@ export function PricingSection() {
               icon={plan.icon}
               description={plan.description}
               price={plan.price}
+              originalPrice={plan.originalPrice}
               promotionText={plan.promotionText}
               priceNote={plan.priceNote}
               cta={plan.cta}

@@ -5,14 +5,12 @@ import { ReactNode } from "react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import Github from "../../logos/github";
 import { Badge } from "../../ui/badge";
 import { Button, buttonVariants } from "../../ui/button";
 import Glow from "../../ui/glow";
 import { Mockup, MockupFrame } from "../../ui/mockup";
 import Screenshot from "../../ui/screenshot";
 import { Section } from "../../ui/section";
-import { Terminal, TypingAnimation } from "../../ui/terminal";
 
 interface HeroButtonProps {
   href: string;
@@ -33,7 +31,7 @@ interface HeroProps {
 
 export default function Hero({
   title,
-  description = "The friendly SaaS starter. Build and ship faster with Next.js, Convex, and TypeScript.",
+  description = "A production-ready SaaS starter with a polished landing page, finished dashboard shell, and the core product surfaces already in place.",
   mockup = (
     <Screenshot
       srcLight="/dashboard-light.png"
@@ -53,7 +51,7 @@ export default function Hero({
         New
       </span>
       <span className="text-muted-foreground font-semibold">
-        Convex real-time backend, premium UI surfaces, docs, and more.
+        Premium SaaS starter for founders, agencies, and product teams.
       </span>
       <div className="ml-1 flex items-center justify-center rounded-full bg-black/5 p-1 dark:bg-white/10">
         <ChevronRightIcon className="text-foreground size-3 transition-transform group-hover:translate-x-0.5" />
@@ -62,10 +60,14 @@ export default function Hero({
   ),
   buttons = [
     {
-      href: siteConfig.links.github,
-      text: "View on GitHub",
+      href: siteConfig.getStartedUrl,
+      text: "Get Started",
       variant: "default",
-      icon: <Github className="mr-2 size-4" />,
+    },
+    {
+      href: siteConfig.demoUrl,
+      text: "Show Demo",
+      variant: "outline",
     },
   ],
   className,
@@ -98,13 +100,17 @@ export default function Hero({
           </p>
           {buttons !== false && buttons.length > 0 && (
             <div className="animate-appear relative z-10 flex flex-col items-center gap-3 opacity-0 delay-300">
-              <div className="flex justify-center mb-4 gap-4">
+              <div className="mb-4 flex justify-center gap-4">
                 {buttons.map((button, index) => (
                   <Button
                     key={index}
                     variant={button.variant || "default"}
                     size="xl"
-                    className="bg-foreground text-background hover:bg-foreground/90 px-8 py-3 text-lg shadow-lg shadow-black/10"
+                    className={cn(
+                      "px-8 py-3 text-lg shadow-lg shadow-black/10",
+                      button.variant === "default" &&
+                        "bg-foreground text-background hover:bg-foreground/90",
+                    )}
                     asChild
                   >
                     <a href={button.href}>
@@ -115,17 +121,6 @@ export default function Hero({
                   </Button>
                 ))}
               </div>
-              <Terminal
-                copyCommand="npx create-fluxkit-app@latest"
-                className="pointer-events-auto w-full max-w-xl"
-              >
-                <TypingAnimation
-                  className="text-blue-400 dark:text-brand font-mono text-lg font-semibold tracking-tight delay-0 sm:text-xl"
-                  duration={40}
-                >
-                  npx create-fluxkit-app@latest
-                </TypingAnimation>
-              </Terminal>
             </div>
           )}
           {mockup !== false && (

@@ -48,12 +48,12 @@ export default function Navbar({
     { text: "Features", href: "/#features" },
     { text: "Pricing", href: "/#pricing" },
     { text: "FAQ", href: "/#faq" },
+    { text: "Docs", href: siteConfig.docsUrl },
   ],
   actions = [
-    { text: "GitHub", href: siteConfig.links.github, isButton: false },
     {
-      text: "Buy FluxKit",
-      href: siteConfig.pricing.pro,
+      text: "Get Started",
+      href: siteConfig.getStartedUrl,
       isButton: true,
       variant: "default",
     },

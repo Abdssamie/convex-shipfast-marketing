@@ -85,7 +85,7 @@ const legalPhone =
 const legalJurisdiction = (process.env.NEXT_PUBLIC_LEGAL_JURISDICTION as LegalConfig["company"]["jurisdiction"] | undefined) || "INT";
 const legalDpo = process.env.NEXT_PUBLIC_DPO_EMAIL;
 
-export const legalLastUpdated = "March 7, 2026";
+export const legalLastUpdated = "March 8, 2026";
 
 // Helper to get analytics provider info based on environment
 function getAnalyticsConfig() {
@@ -190,8 +190,8 @@ export const legalConfig: LegalConfig = {
                 { name: "Vercel", purpose: "Hosting", location: "USA (DPF)" },
                 { name: "Convex", purpose: "Database", location: "USA (DPF)" },
                 {
-                    name: "Polar",
-                    purpose: "Payment processing when checkout is enabled",
+                    name: "Gumroad",
+                    purpose: "Payment processing and digital delivery when checkout is enabled",
                     location: "USA/EEA depending on service configuration",
                 },
             ],
@@ -239,12 +239,13 @@ export const legalConfig: LegalConfig = {
             ],
             limitations: [
                 "Prohibited from redistributing the source code as a boilerplate or direct competitor",
+                "Client work requires a separate license purchased for that client; your personal license does not transfer",
             ],
         },
         payment: {
             required: false,
-            methods: [],
-            refund: "Refund terms will be published on the checkout and order pages when paid access is enabled.",
+            methods: ["Gumroad"],
+            refund: "Refund terms are published on the Gumroad checkout and receipt pages when paid access is enabled.",
         },
         liability: {
             limitations: [
@@ -260,6 +261,7 @@ export const legalConfig: LegalConfig = {
             restrictions: [
                 "Prohibited from redistributing the boilerplate",
                 "Prohibited from creating direct competing products",
+                "Prohibited from using a personal license to deliver a client project without a client license",
             ],
         },
         termination: {

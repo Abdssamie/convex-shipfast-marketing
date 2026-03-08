@@ -56,18 +56,18 @@ export default function Items({
       icon: <MailCheckIcon className="size-5 stroke-1" />,
     },
     {
-      title: "Polar billing integration",
-      description: "Accept subscriptions with prebuilt billing flows and product-ready payment wiring.",
+      title: "Gumroad checkout",
+      description: "One-time purchases with Gumroad checkout, receipts, and delivery.",
       icon: <CreditCardIcon className="size-5 stroke-1" />,
     },
     {
-      title: "Subscription lifecycle management",
-      description: "Ship upgrades, downgrades, and usage-aware billing behavior faster.",
+      title: "License delivery & updates",
+      description: "Gumroad customer library keeps downloads and updates in one place.",
       icon: <RefreshCwIcon className="size-5 stroke-1" />,
     },
     {
-      title: "Usage tracking",
-      description: "Track usage and subscription-related events with practical starter patterns.",
+      title: "Sales reporting",
+      description: "Gumroad sales insights for early pricing and demand validation.",
       icon: <ReceiptIcon className="size-5 stroke-1" />,
     },
     {

@@ -16,21 +16,21 @@ export function FinalCta() {
                         Ship your SaaS faster with FluxKit
                     </h2>
                     <p className="text-muted-foreground mx-auto mt-4 max-w-2xl text-base leading-relaxed sm:text-lg">
-                        Skip months of repetitive setup. Buy FluxKit and focus your team on
-                        revenue-producing features.
+                        Skip the blank-canvas phase and start from a product surface
+                        that already looks ready to ship.
                     </p>
                     <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                         <a
-                            href={siteConfig.pricing.pro}
+                            href={siteConfig.getStartedUrl}
                             className="bg-foreground text-background inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-medium"
                         >
-                            Buy FluxKit <ArrowRightIcon className="size-4" />
+                            Get Started <ArrowRightIcon className="size-4" />
                         </a>
                         <a
-                            href={siteConfig.docsUrl}
+                            href={siteConfig.demoUrl}
                             className="border-border inline-flex items-center justify-center rounded-md border px-5 py-3 text-sm font-medium"
                         >
-                            Read Docs
+                            Show Demo
                         </a>
                     </div>
                 </div>

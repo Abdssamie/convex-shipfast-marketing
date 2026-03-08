@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import { CircleCheckBig } from "lucide-react";
+import { CheckIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import { ReactNode } from "react";
 
@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "./button";
 
 const pricingColumnVariants = cva(
-  "max-w-container relative flex h-full flex-col gap-5 overflow-hidden rounded-2xl p-8 shadow-xl",
+  "max-w-container relative flex h-full flex-col gap-4 overflow-hidden rounded-2xl p-8 shadow-xl",
   {
     variants: {
       variant: {
@@ -23,6 +23,11 @@ const pricingColumnVariants = cva(
     },
   },
 );
+
+export interface PricingFeature {
+  label: string;
+  included: boolean;
+}
 
 export interface PricingColumnProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -39,7 +44,7 @@ export interface PricingColumnProps
     label: string;
     href: string;
   };
-  features: string[];
+  features: PricingFeature[];
 }
 
 export function PricingColumn({
@@ -67,7 +72,7 @@ export function PricingColumn({
           variant === "glow-brand" && "via-brand",
         )}
       />
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-4">
         <header className="flex flex-col gap-1.5 lg:min-h-[72px]">
           <h2 className="flex items-center gap-2 font-bold">
             {icon && (
@@ -82,13 +87,18 @@ export function PricingColumn({
           </p>
         </header>
         <section className="flex flex-col gap-2.5 lg:min-h-[96px]">
-          {originalPrice !== undefined && (
-            <div className="flex h-6 items-baseline gap-1">
+          {(originalPrice !== undefined || promotionText) && (
+            <div className="flex min-h-6 items-center gap-2">
               <span className="text-muted-foreground text-lg font-medium line-through">
                 {originalPrice > 0 && price !== originalPrice
                   ? `$${originalPrice}`
                   : ""}
               </span>
+              {promotionText ? (
+                <span className="text-brand text-xs font-semibold uppercase tracking-[0.12em]">
+                  {promotionText}
+                </span>
+              ) : null}
             </div>
           )}
           <div className="flex items-center gap-3">
@@ -118,11 +128,6 @@ export function PricingColumn({
               )}
             </div>
           </div>
-          {promotionText && (
-            <div className="text-brand-foreground h-6 text-sm font-medium">
-              {promotionText}
-            </div>
-          )}
         </section>
         <Button variant={cta.variant} size="lg" asChild>
           <Link href={cta.href}>{cta.label}</Link>
@@ -133,11 +138,23 @@ export function PricingColumn({
         <hr className="border-input" />
       </div>
       <div>
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-1">
           {features.map((feature) => (
-            <li key={feature} className="flex items-center gap-2 text-sm">
-              <CircleCheckBig className="text-muted-foreground size-4 shrink-0" />
-              {feature}
+            <li key={feature.label} className="flex items-center gap-2 text-sm leading-6">
+              {feature.included ? (
+                <CheckIcon className="text-brand size-4 shrink-0" />
+              ) : (
+                <XIcon className="text-muted-foreground/35 size-4 shrink-0" />
+              )}
+              <span
+                className={cn(
+                  feature.included
+                    ? "text-foreground"
+                    : "text-muted-foreground",
+                )}
+              >
+                {feature.label}
+              </span>
             </li>
           ))}
         </ul>

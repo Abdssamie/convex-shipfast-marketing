@@ -25,11 +25,11 @@ interface CTAProps {
 
 export default function CTA({
   title = "Build the Product, Not the Boilerplate",
-  description = "Start with the free open-source tier or unlock the full Convex ShipFast business stack for teams and commercial launches.",
+  description = "Pick the one-time license that matches how you ship and get to production faster.",
   buttons = [
     {
-      href: siteConfig.pricing.free,
-      text: "Get Free Tier",
+      href: siteConfig.pricing.pro,
+      text: "Get Pro",
       variant: "default",
     },
     {

@@ -63,9 +63,9 @@ export default function Navigation({
       href: "/#faq",
     },
     {
-      title: "GitHub",
+      title: "Docs",
       isLink: true,
-      href: siteConfig.links.github,
+      href: siteConfig.docsUrl,
     },
   ],
   components = [

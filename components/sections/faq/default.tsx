@@ -31,9 +31,9 @@ export default function FAQ({
       answer: (
         <p className="text-muted-foreground mb-4 max-w-[640px]">
           Convex ShipFast is a production-ready SaaS boilerplate built with
-          Next.js 16, Convex, Better Auth, Polar billing, and a modern dashboard
-          architecture. It gives you a serious starting point for commercial
-          products without rebuilding core infrastructure.
+          Next.js 16, Convex, a modern dashboard architecture, and a commercial
+          presentation layer. It gives you a serious starting point for
+          commercial products without rebuilding core infrastructure.
         </p>
       ),
     },
@@ -41,9 +41,9 @@ export default function FAQ({
       question: "What does the free tier include?",
       answer: (
         <p className="text-muted-foreground mb-4 max-w-[640px]">
-          The free open-source tier includes authentication flows, Polar
-          payments, Brevo email integration, Convex setup, and testing/linting
-          starter configuration. It is intentionally limited and does not include
+          The free open-source tier includes authentication flows, Convex
+          setup, Brevo email integration, and testing/linting starter
+          configuration. It is intentionally limited and does not include
           organization or teams support.
         </p>
       ),
@@ -65,6 +65,15 @@ export default function FAQ({
           Yes. You own the code and can adapt UI, data models, auth flows,
           billing behavior, and infrastructure integrations. The stack is fully
           TypeScript-based for safer changes and faster iteration.
+        </p>
+      ),
+    },
+    {
+      question: "Can I use my license for a client project?",
+      answer: (
+        <p className="text-muted-foreground mb-4 max-w-[640px]">
+          Client work requires a separate license purchased for that client.
+          Your personal license only covers internal use.
         </p>
       ),
     },

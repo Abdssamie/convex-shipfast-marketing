@@ -23,34 +23,34 @@ const showcaseData = {
   features: [
     {
       id: "landing",
-      title: "Next.js and React 19 foundation",
+      title: "Landing page sections ready to customize",
       description:
-        "Built on the modern App Router stack with Server Components, Server Actions, and Turbopack-ready development defaults.",
-      highlight: "Frontend platform",
+        "Hero, navigation, CTA, and supporting sections are already designed as a coherent marketing surface, so you start from a launchable landing page instead of loose blocks.",
+      highlight: "Landing page",
       media: {
         type: "image",
         src: "/landing-page-preview.png",
-        alt: "React and Next.js architecture preview",
+        alt: "Landing page preview",
       },
     },
     {
       id: "dashboard",
-      title: "Convex real-time backend",
+      title: "Dashboard and settings screens already framed",
       description:
-        "Reactive data, live client sync, and typed backend functions are already part of the baseline, so your product logic starts from a working system.",
-      highlight: "Live data layer",
+        "The app shell includes dashboard navigation, profile settings, account areas, and billing-oriented surfaces, so the authenticated product already looks like a real SaaS.",
+      highlight: "Dashboard features",
       media: {
         type: "image",
         src: "/dashboard-preview.png",
-        alt: "Real-time dashboard preview",
+        alt: "Dashboard settings preview",
       },
     },
     {
       id: "customization",
-      title: "Authentication and account flows",
+      title: "Theme customizer built into the experience",
       description:
-        "Secure sign-in, session handling, and account lifecycle patterns are already framed so you can ship access control and user onboarding earlier.",
-      highlight: "Account foundation",
+        "The live theme panel lets you test colors, radius, and presets directly against the landing page, so visual customization happens in context instead of by guesswork.",
+      highlight: "Theme customizer",
       media: {
         type: "video",
         src: "/theme-customized-showcase-video.mp4",

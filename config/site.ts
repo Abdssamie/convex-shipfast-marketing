@@ -11,12 +11,29 @@ const siteUrl =
   (process.env.NODE_ENV === "development"
     ? "http://localhost:3000"
     : productionUrl);
+const demoUrl =
+  process.env.NEXT_PUBLIC_DEMO_URL ||
+  process.env.NEXT_PUBLIC_APP_URL ||
+  process.env.NEXT_PUBLIC_DEMO_APP_URL ||
+  "/demo";
+const gumroadProductUrl = process.env.NEXT_PUBLIC_GUMROAD_PRODUCT_URL;
+const proCheckoutUrl =
+  gumroadProductUrl ||
+  process.env.NEXT_PUBLIC_PRO_CHECKOUT_URL ||
+  process.env.NEXT_PUBLIC_CHECKOUT_URL_PRO ||
+  "/#pricing";
+const teamsCheckoutUrl =
+  gumroadProductUrl ||
+  process.env.NEXT_PUBLIC_TEAMS_CHECKOUT_URL ||
+  process.env.NEXT_PUBLIC_CHECKOUT_URL_TEAMS ||
+  "/#pricing";
 
 export const siteConfig = {
   name: "FluxKit",
   url: siteUrl,
-  getStartedUrl: "https://github.com/fluxkit-hq/fluxkit",
+  getStartedUrl: proCheckoutUrl,
   docsUrl: "/docs",
+  demoUrl,
   ogImage: `${siteUrl}/og.jpg`,
   description:
     "Production-ready SaaS starter kit with authentication, teams, dashboard foundations, and real-time features. Built with Next.js, Convex, and TypeScript.",
@@ -25,8 +42,8 @@ export const siteConfig = {
     email: "mailto:hello@flux-kut.dev",
   },
   pricing: {
-    free: "https://github.com/fluxkit-hq/fluxkit",
-    pro: "/#pricing",
+    pro: proCheckoutUrl,
+    teams: teamsCheckoutUrl,
   },
   stats: {
     github: 0,

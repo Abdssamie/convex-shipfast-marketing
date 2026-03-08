@@ -1,4 +1,4 @@
-import { Check, Github, X } from "lucide-react";
+import { BriefcaseBusinessIcon, Check, SparklesIcon, X } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -14,58 +14,52 @@ interface PricingProps {
 }
 
 export default function Pricing({
-  title = "Pricing for Open Source and Growth Teams",
-  description = "Start free for core auth-first product setup, then upgrade to unlock organizations, complete product surfaces, and business-ready workflows.",
+  title = "Pricing for Pro and Teams",
+  description = "One-time licenses for founders and teams. No subscriptions.",
   plans = [
     {
-      name: "Free",
-      icon: <Github className="size-4" />,
-      description: "Open-source starter for auth-first products and solo builders.",
-      price: 0,
-      priceNote: "MIT license. Community support and updates.",
+      name: "Pro",
+      icon: <SparklesIcon className="size-4" />,
+      description: "Single-user commercial license with lifetime updates.",
+      price: 99,
+      originalPrice: 149,
+      promotionText: "One-time license",
+      priceNote: "One-time payment. Delivered via Gumroad.",
       cta: {
         variant: "default",
-        label: "Get Free Tier",
-        href: siteConfig.pricing.free,
+        label: "Get Pro",
+        href: siteConfig.pricing.pro,
       },
       features: [
-        "Email/password authentication",
-        "Magic links and verification",
-        "Polar payments integration",
-        "Brevo email integration",
-        "Convex backend setup",
-        "Testing and linting starter setup",
-        "TypeScript and Next.js baseline",
-        "Open-source code access",
-        "No organization or teams support",
-        "No advanced dashboard modules",
-        "Community support",
+        "Single-seat commercial use",
+        "Lifetime updates",
+        "Auth foundation",
+        "Dashboard foundation",
+        "Gumroad checkout",
+        "Landing page content",
+        "Testing + linting setup",
+        "Priority bug fixes",
       ],
       variant: "default",
     },
     {
-      name: "Business",
-      description: "Full Convex ShipFast stack for teams shipping commercial SaaS.",
-      price: 399,
-      priceNote: "One-time payment. Lifetime updates. Commercial use.",
+      name: "Teams",
+      icon: <BriefcaseBusinessIcon className="size-4" />,
+      description: "Multi-seat internal team license with priority support.",
+      price: 249,
+      originalPrice: 349,
+      promotionText: "Team license",
+      priceNote: "One-time payment. Delivered via Gumroad.",
       cta: {
         variant: "glow",
-        label: "Get Business Tier",
-        href: siteConfig.pricing.pro,
+        label: "Get Teams",
+        href: siteConfig.pricing.teams,
       },
       features: [
-        "Everything in Free, plus:",
-        "Organizations and team management",
-        "Role-based access control",
-        "Complete dashboard experience",
-        "Landing page and content surfaces",
-        "Advanced analytics modules",
-        "Production notifications patterns",
-        "Business-ready architecture defaults",
+        "Everything in Pro",
+        "Multi-seat internal access",
+        "Team-wide commercial use",
         "Priority support",
-        "Lifetime updates",
-        "Commercial license",
-        "Unlimited projects",
       ],
       variant: "glow-brand",
     },
@@ -118,13 +112,13 @@ export default function Pricing({
                 <thead>
                   <tr className="border-input border-b">
                     <th className="p-4 text-left font-semibold">Features</th>
-                    <th className="p-4 text-center font-semibold">Free</th>
-                    <th className="p-4 text-center font-semibold">Business</th>
+                    <th className="p-4 text-center font-semibold">Pro</th>
+                    <th className="p-4 text-center font-semibold">Teams</th>
                   </tr>
                 </thead>
                 <tbody className="divide-input divide-y">
                   <tr>
-                    <td className="p-4 text-sm">Email/password auth</td>
+                    <td className="p-4 text-sm">Auth flows already wired</td>
                     <td className="p-4 text-center">
                       <Check className="text-muted-foreground mx-auto size-5" />
                     </td>
@@ -133,7 +127,7 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Magic links + verification</td>
+                    <td className="p-4 text-sm">Organizations and role support</td>
                     <td className="p-4 text-center">
                       <Check className="text-muted-foreground mx-auto size-5" />
                     </td>
@@ -142,7 +136,7 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Convex backend setup</td>
+                    <td className="p-4 text-sm">Convex backend and realtime foundation</td>
                     <td className="p-4 text-center">
                       <Check className="text-muted-foreground mx-auto size-5" />
                     </td>
@@ -151,16 +145,7 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Polar payments</td>
-                    <td className="p-4 text-center">
-                        <Check className="text-muted-foreground mx-auto size-5" />
-                      </td>
-                      <td className="p-4 text-center">
-                        <Check className="text-brand-foreground mx-auto size-5" />
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className="p-4 text-sm">Brevo email integration</td>
+                    <td className="p-4 text-sm">Gumroad one-time checkout</td>
                     <td className="p-4 text-center">
                       <Check className="text-muted-foreground mx-auto size-5" />
                     </td>
@@ -169,34 +154,7 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Organizations and teams</td>
-                    <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">Dashboard modules</td>
-                    <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">Landing page sections</td>
-                    <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">Testing starter setup</td>
+                    <td className="p-4 text-sm">Landing page and dashboard shell</td>
                     <td className="p-4 text-center">
                       <Check className="text-muted-foreground mx-auto size-5" />
                     </td>
@@ -205,29 +163,18 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Analytics + monitoring setup</td>
+                    <td className="p-4 text-sm">Commercial license and lifetime updates</td>
                     <td className="p-4 text-center">
-                      <X className="text-muted-foreground/30 mx-auto size-5" />
+                      <Check className="text-muted-foreground mx-auto size-5" />
                     </td>
                     <td className="p-4 text-center">
                       <Check className="text-brand-foreground mx-auto size-5" />
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Rate limiting patterns</td>
+                    <td className="p-4 text-sm">Team-friendly commercial usage</td>
                     <td className="p-4 text-center">
                       <X className="text-muted-foreground/30 mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">
-                      Commercial project use
-                    </td>
-                    <td className="p-4 text-center">
-                      <span className="text-muted-foreground text-xs">MIT</span>
                     </td>
                     <td className="p-4 text-center">
                       <Check className="text-brand-foreground mx-auto size-5" />
@@ -243,38 +190,9 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Unlimited projects</td>
+                    <td className="p-4 text-sm">Multi-seat internal team access</td>
                     <td className="p-4 text-center">
-                      <Check className="text-muted-foreground mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">Community support</td>
-                    <td className="p-4 text-center">
-                      <Check className="text-muted-foreground mx-auto size-5" />
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">Commercial license</td>
-                    <td className="p-4 text-center">
-                      <span className="text-muted-foreground text-xs">MIT</span>
-                    </td>
-                    <td className="p-4 text-center">
-                      <Check className="text-brand-foreground mx-auto size-5" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-sm">Lifetime updates</td>
-                    <td className="p-4 text-center">
-                      <span className="text-muted-foreground text-xs">
-                        Community
-                      </span>
+                      <X className="text-muted-foreground/30 mx-auto size-5" />
                     </td>
                     <td className="p-4 text-center">
                       <Check className="text-brand-foreground mx-auto size-5" />
