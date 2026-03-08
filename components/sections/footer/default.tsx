@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import Github from "../../logos/github";
 import FluxkitLogo from "../../ui/fluxkit-logo";
 import {
   Footer,
@@ -48,17 +47,6 @@ export default function FooterSection({
     {
       title: "Resources",
       links: [
-        { text: "Blog", href: "/blog" },
-        { text: "GitHub", href: siteConfig.links.github },
-      ],
-    },
-    {
-      title: "Community",
-      links: [
-        {
-          text: "GitHub Discussions",
-          href: `${siteConfig.links.github}/discussions`,
-        },
       ],
     },
     {
@@ -104,15 +92,6 @@ export default function FooterSection({
           <FooterBottom>
             <div>{copyright}</div>
             <div className="flex items-center gap-4">
-              <a
-                href={siteConfig.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="GitHub"
-              >
-                <Github className="h-5 w-5" />
-              </a>
               {showModeToggle && <ModeToggle />}
             </div>
           </FooterBottom>

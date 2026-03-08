@@ -21,7 +21,7 @@ export default function DocsGettingStartedPage() {
         <section>
           <h2 className="text-xl font-semibold">Project map</h2>
           <ul className="text-muted-foreground mt-3 list-disc space-y-2 pl-5 text-sm leading-6">
-            <li>`app/`: landing page, blog, legal pages, and docs routes.</li>
+            <li>`app/`: landing page, legal pages, and docs routes.</li>
             <li>`components/`: marketing sections and shared UI primitives.</li>
             <li>`convex/convex.config.ts`: installs the Polar component.</li>
             <li>`convex/http.ts`: exposes the `/polar/events` webhook handler.</li>

@@ -19,7 +19,6 @@ export function LandingFooter() {
             title: "Resources",
             links: [
                 { label: "Documentation", href: siteConfig.docsUrl },
-                { label: "GitHub", href: siteConfig.links.github },
             ],
         },
         {

@@ -131,8 +131,8 @@ export default function Items({
       icon: <FileTextIcon className="size-5 stroke-1" />,
     },
     {
-      title: "Landing page + blog",
-      description: "Promote your product with conversion-focused landing and content scaffolding.",
+      title: "Landing page",
+      description: "Promote your product with a conversion-focused marketing surface.",
       icon: <LayoutTemplateIcon className="size-5 stroke-1" />,
     },
     {

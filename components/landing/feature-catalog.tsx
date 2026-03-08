@@ -27,7 +27,7 @@ const featureCatalog = [
     "Upstash rate limiting for critical routes",
     "Dashboard architecture and account settings",
     "Tasks and calendar product modules",
-    "Landing and blog growth surfaces",
+    "Landing growth surfaces",
     "Type-safe end-to-end TypeScript baseline",
     "Responsive UI with theme support",
     "Production-ready SaaS deployment patterns",
