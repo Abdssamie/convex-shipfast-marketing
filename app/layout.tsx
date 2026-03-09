@@ -58,11 +58,21 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/fluxkit.png?v=20260309", type: "image/png" },
-      { url: "/favicon.svg?v=20260309", type: "image/svg+xml" },
+      { url: "/favicon.ico?v=20260309b", type: "image/x-icon" },
+      {
+        url: "/favicon-32x32.png?v=20260309b",
+        sizes: "32x32",
+        type: "image/png",
+      },
+      {
+        url: "/favicon-16x16.png?v=20260309b",
+        sizes: "16x16",
+        type: "image/png",
+      },
+      { url: "/icon.png?v=20260309b", type: "image/png" },
     ],
-    shortcut: "/fluxkit.png?v=20260309",
-    apple: "/apple-touch-icon.png?v=20260309",
+    shortcut: "/favicon.ico?v=20260309b",
+    apple: "/apple-icon.png?v=20260309b",
   },
 };
 
