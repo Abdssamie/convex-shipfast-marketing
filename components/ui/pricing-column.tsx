@@ -90,7 +90,9 @@ export function PricingColumn({
           {(originalPrice !== undefined || promotionText) && (
             <div className="flex min-h-6 items-center gap-2">
               <span className="text-muted-foreground text-lg font-medium line-through">
-                {originalPrice > 0 && price !== originalPrice
+                {originalPrice !== undefined &&
+                originalPrice > 0 &&
+                price !== originalPrice
                   ? `$${originalPrice}`
                   : ""}
               </span>
