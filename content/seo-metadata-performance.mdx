@@ -1,0 +1,127 @@
+# SEO, Metadata, and Performance
+
+SEO, metadata, and performance behavior in the FluxKit application.
+
+## Root Metadata Contract
+
+`src/app/layout.tsx` defines baseline metadata:
+
+```ts
+export const metadata: Metadata = {
+  title: "FluxKit",
+  description:
+    "Production-ready SaaS starter with auth, teams, billing, and dashboards.",
+  icons: {
+    icon: "/fluxkit.png",
+  },
+};
+```
+
+This metadata applies globally unless route segments override it.
+
+## Canonical Routing and Redirects
+
+`next.config.ts` includes a permanent redirect:
+
+```ts
+async redirects() {
+  return [
+    {
+      source: '/home',
+      destination: '/dashboard',
+      permanent: true,
+    },
+  ];
+},
+```
+
+Permanent redirects reduce duplicate-content indexing and preserve link equity.
+
+## Header-Level Hardening
+
+`next.config.ts` adds baseline security headers:
+
+```ts
+async headers() {
+  return [
+    {
+      source: '/(.*)',
+      headers: [
+        { key: 'X-Frame-Options', value: 'DENY' },
+        { key: 'X-Content-Type-Options', value: 'nosniff' },
+        { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
+      ],
+    },
+  ];
+},
+```
+
+These do not directly improve ranking, but reduce security regressions that can degrade trust and uptime.
+
+## Image and Bundle Optimization
+
+`next.config.ts` enables modern image formats and package import optimization:
+
+```ts
+experimental: {
+  optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
+},
+
+images: {
+  remotePatterns: [
+    { protocol: 'https', hostname: 'ui.shadcn.com' },
+    { protocol: 'https', hostname: 'images.unsplash.com' },
+  ],
+  formats: ['image/webp', 'image/avif'],
+},
+```
+
+Expected impact:
+
+- Smaller JavaScript bundles for icon-heavy pages.
+- Smaller image transfer size for supported clients.
+
+## Runtime Performance and Rate Limiting
+
+`src/proxy.ts` applies lightweight edge-like request filtering and optional Upstash throttling:
+
+```ts
+const url = process.env.UPSTASH_REDIS_REST_URL;
+const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+if (!url || !token) {
+  console.warn(
+    "Upstash Redis credentials are not set. Rate limiting is disabled.",
+  );
+  ratelimiter = null;
+  return null;
+}
+```
+
+When configured, protected route bursts are constrained to reduce origin pressure.
+
+## Observability for Web Vitals and Failures
+
+Client-side error capture uses `NEXT_PUBLIC_SENTRY_DSN` in `src/lib/sentry.ts`, and backend capture uses `SENTRY_DSN` in `convex/features/monitoring/sentry.ts`.
+
+```ts
+const SENTRY_DSN = process.env.NEXT_PUBLIC_SENTRY_DSN;
+const SENTRY_ENVIRONMENT =
+  process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT || "development";
+```
+
+```ts
+const SENTRY_DSN = process.env.SENTRY_DSN;
+const isEnabled = SENTRY_DSN && SENTRY_DSN.length > 0;
+```
+
+## Verification Commands
+
+```bash
+bun run build
+bun run dev
+curl -I http://localhost:3000/home
+curl -I http://localhost:3000/
+bun run lint
+bun run typecheck
+```

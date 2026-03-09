@@ -1,0 +1,119 @@
+# Configuration and Environment
+
+Runtime configuration for the FluxKit application.
+
+## Runtime boundaries
+
+- Next.js client reads only `NEXT_PUBLIC_*` variables.
+- Next.js server can read server-only secrets plus `NEXT_PUBLIC_*`.
+- Convex functions (in `convex/`) read server-side environment variables.
+- Better Auth + Polar integration is configured from Convex runtime.
+
+## Baseline environment template
+
+Use `.env.example` as the canonical baseline.
+
+```env
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+SITE_URL=http://localhost:3000
+
+# Better Auth Secret (Required)
+BETTER_AUTH_SECRET=
+
+# Email Provider: "resend" (recommended) or "brevo"
+EMAIL_PROVIDER=resend
+RESEND_API_KEY=
+RESEND_FROM=FluxKit <noreply@yourdomain.com>
+
+# Sentry
+SENTRY_DSN=
+NEXT_PUBLIC_SENTRY_DSN=
+NEXT_PUBLIC_SENTRY_ENVIRONMENT=development
+```
+
+## Auth and callback config (Convex)
+
+`convex/features/auth/auth.ts` consumes site/auth/provider values:
+
+```ts
+export const createAuthOptions = (ctx: GenericCtx<DataModel>) => {
+  return {
+    appName: "FluxKit",
+    baseURL: process.env.SITE_URL ?? process.env.NEXT_PUBLIC_SITE_URL,
+    secret: process.env.BETTER_AUTH_SECRET,
+    database: authComponent.adapter(ctx),
+    socialProviders: {
+      google: {
+        clientId: process.env.GOOGLE_CLIENT_ID!,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      },
+    },
+  };
+};
+```
+
+## Convex URL handoff into Next.js auth/client
+
+`src/lib/auth/server.ts` and `src/components/providers/ConvexClientProvider.tsx` both require `NEXT_PUBLIC_CONVEX_URL`:
+
+```ts
+export const { handler, preloadAuthQuery, isAuthenticated, getToken } =
+  convexBetterAuthNextJs({
+    convexUrl: process.env.NEXT_PUBLIC_CONVEX_URL!,
+    convexSiteUrl: process.env.NEXT_PUBLIC_CONVEX_SITE_URL!,
+  });
+
+const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
+```
+
+If those are absent, auth preloading and Convex client initialization fail at runtime.
+
+## Email provider configuration rules
+
+`convex/features/email/config.ts` enforces strict env validation:
+
+```ts
+const requiredEnv = (field: string): string => {
+  const value = process.env[field];
+  if (!value) {
+    throw { code: "missing_env", field, value: "" } as EmailConfigError;
+  }
+  return value;
+};
+
+export const getEmailProvider = (): "brevo" | "resend" => {
+  const provider = process.env.EMAIL_PROVIDER?.trim().toLowerCase();
+  if (provider === "brevo") return "brevo";
+  if (provider === "resend" || !provider) return "resend";
+  throw {
+    code: "missing_env",
+    field: "EMAIL_PROVIDER",
+    value: provider,
+  } as EmailConfigError;
+};
+```
+
+## Polar Server Mode and Product Configuration
+
+`convex/polar.ts` maps env into billing config:
+
+```ts
+const POLAR_PRO_PRODUCT_ID =
+  process.env.POLAR_PRO_PRODUCT_ID ?? "polar_pro_product_id_placeholder";
+const POLAR_TEAMS_PRODUCT_ID =
+  process.env.POLAR_TEAMS_PRODUCT_ID ?? "polar_teams_product_id_placeholder";
+const POLAR_SERVER_MODE =
+  process.env.POLAR_SERVER === "production" ? "production" : "sandbox";
+```
+
+Never deploy with placeholder product IDs.
+
+## Verification commands
+
+```bash
+test -f .env.local
+bunx convex env list
+bun run typecheck
+bun run build
+```

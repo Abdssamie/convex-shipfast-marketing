@@ -1,0 +1,133 @@
+# Routing and Rendering
+
+FluxKit uses Next.js App Router with route groups for landing, auth, and dashboard surfaces, plus a request pre-processing proxy.
+
+## Route topology
+
+- Root entry: `src/app/page.tsx` delegates to landing content.
+- Public landing group: `src/app/(landing)/...`.
+- Auth group: `src/app/(auth)/...`.
+- Protected app group: `src/app/(dashboard)/...`.
+- API auth endpoint: `src/app/api/auth/[...all]/route.ts`.
+
+```tsx
+import { LandingPageContent } from "./(landing)/landing-page-content";
+
+export default function HomePage() {
+  return <LandingPageContent />;
+}
+```
+
+## Rendering model
+
+- `src/app/layout.tsx` is an async server component (token fetch on server).
+- Most feature pages are client components where Convex hooks run (`"use client"`).
+- Metadata is declared per route where needed.
+
+```tsx
+export const metadata: Metadata = {
+  title,
+  description,
+  keywords: ["saas", "react", "nextjs", "typescript", "tailwind css"],
+  openGraph: { title, description, type: "website" },
+  twitter: { card: "summary_large_image", title, description },
+};
+
+export default function LandingPage() {
+  return <LandingPageContent />;
+}
+```
+
+```tsx
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  let token: string | null = null;
+  try {
+    token = (await getToken()) ?? null;
+  } catch {
+    token = null;
+  }
+
+  return (
+    <ConvexClientProvider initialToken={token}>
+      <ThemeProvider defaultTheme="system" storageKey="nextjs-ui-theme">
+        {children}
+      </ThemeProvider>
+    </ConvexClientProvider>
+  );
+}
+```
+
+## Request pre-processing (proxy)
+
+`src/proxy.ts` handles redirect compatibility (`/login` -> `/sign-in`), protected-route auth cookie checks, and per-IP rate limiting for protected prefixes.
+
+```ts
+if (pathname === "/login") {
+  return NextResponse.redirect(new URL("/sign-in", request.url));
+}
+
+const isProtectedRoute = protectedPrefixes.some((prefix) =>
+  pathname.startsWith(prefix),
+);
+
+if (isProtectedRoute && !sessionCookie) {
+  const signInUrl = new URL("/sign-in", request.url);
+  signInUrl.searchParams.set("redirect", pathname);
+  return NextResponse.redirect(signInUrl);
+}
+
+export const config = {
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:png|jpg|jpeg|gif|webp|svg|ico)).*)",
+  ],
+};
+```
+
+## Auth route handling path
+
+1. Browser calls `/api/auth/*`.
+2. Next route handler exports Better Auth handler methods.
+3. Convex HTTP router (`convex/http.ts`) registers Better Auth routes and applies rate-limit middleware to selected auth endpoints.
+
+```ts
+const isRateLimited = RATE_LIMITED_PATHS.some((path) =>
+  options.path?.includes(path),
+);
+
+if (isRateLimited && originalHandler) {
+  options.handler = async (request: Request) => {
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+      request.headers.get("x-real-ip") ||
+      "unknown";
+
+    const rateLimitResult = await checkRateLimit(authLimiter, ip);
+    if (!rateLimitResult.success) {
+      return new Response(JSON.stringify({ error: "Too many requests" }), {
+        status: 429,
+      });
+    }
+    return originalHandler(request);
+  };
+}
+```
+
+## Data-fetch rendering behavior in dashboard
+
+Dashboard shell blocks on auth state and conditionally renders the app scaffold.
+
+```tsx
+<AuthLoading>
+  <div className="flex h-screen w-full items-center justify-center bg-background">
+    <Loader2 className="h-8 w-8 animate-spin text-primary" />
+  </div>
+</AuthLoading>
+<Unauthenticated>
+  <RedirectToSignIn />
+</Unauthenticated>
+<Authenticated>{/* SidebarProvider + layout content */}</Authenticated>
+```

@@ -1,0 +1,103 @@
+# Build, Lint, and Deployment
+
+FluxKit build and deployment workflow.
+
+## Script Contract
+
+`package.json` defines the CI-relevant script graph:
+
+```json
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "bunx convex codegen && tsc --noEmit",
+    "test": "TZ=UTC bun test"
+  }
+}
+```
+
+Notable detail: `typecheck` always regenerates Convex generated types first.
+
+## Local Build Pipeline
+
+Run checks in this order:
+
+```bash
+bun install
+bun run lint
+bun run typecheck
+bun run test
+bun run build
+```
+
+Why this order:
+
+- `lint` catches syntax and style issues early.
+- `typecheck` catches Convex codegen and API drift.
+- `test` validates runtime behavior.
+- `build` validates production bundling and route graph.
+
+## Convex Deployment Sequence
+
+Deploy backend separately from Next.js host deployment:
+
+```bash
+bunx convex dev
+bunx convex deploy
+```
+
+After deploy, propagate production Convex URL values into host env:
+
+- `NEXT_PUBLIC_CONVEX_URL`
+- `NEXT_PUBLIC_CONVEX_SITE_URL`
+
+## Host Deployment (Next.js)
+
+The application uses standard Next.js App Router deployment and works on Vercel or equivalent Node.js hosts.
+
+Minimum required env at host level:
+
+```env
+NEXT_PUBLIC_SITE_URL=https://app.example.com
+SITE_URL=https://app.example.com
+BETTER_AUTH_SECRET=
+
+NEXT_PUBLIC_CONVEX_URL=
+NEXT_PUBLIC_CONVEX_SITE_URL=
+
+EMAIL_PROVIDER=resend
+RESEND_API_KEY=
+RESEND_FROM=FluxKit <noreply@example.com>
+```
+
+If using Polar and Google OAuth, also set:
+
+- `POLAR_PRO_PRODUCT_ID`, `POLAR_TEAMS_PRODUCT_ID`, `POLAR_SERVER`
+- `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
+
+## CI Verification Template
+
+Use the same commands as local pipeline for deterministic outcomes:
+
+```bash
+bun --version
+node --version
+bun install --frozen-lockfile
+bun run lint
+bun run typecheck
+bun run test
+bun run build
+```
+
+## Release Gate Commands
+
+```bash
+bun run lint
+bun run typecheck
+bun run test
+bun run build
+bunx convex deploy
+```

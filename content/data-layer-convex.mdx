@@ -1,0 +1,158 @@
+# Data Layer (Convex)
+
+Convex data model and function patterns used by FluxKit.
+
+## Application Composition and Components
+
+`convex/convex.config.ts` wires app-level components:
+
+```ts
+import { defineApp } from "convex/server";
+import betterAuth from "./features/auth/convex.config";
+import polar from "@convex-dev/polar/convex.config";
+
+const app = defineApp();
+
+app.use(betterAuth);
+app.use(polar);
+
+export default app;
+```
+
+This means data + auth + billing live behind a single Convex deployment boundary.
+
+## Schema design
+
+`convex/schema.ts` defines core domain tables:
+
+```ts
+export default defineSchema({
+  tasks: defineTable({
+    title: v.string(),
+    description: v.optional(v.string()),
+    status: v.union(
+      v.literal("pending"),
+      v.literal("in progress"),
+      v.literal("completed"),
+      v.literal("cancelled"),
+    ),
+    priority: v.union(v.literal("low"), v.literal("medium"), v.literal("high")),
+    category: v.string(),
+    userId: v.string(),
+    assignedTo: v.optional(v.string()),
+    dueDate: v.optional(v.number()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_status", ["status"])
+    .index("by_priority", ["priority"])
+    .index("by_category", ["category"]),
+});
+```
+
+Key strategy: each user-facing table includes either `userId` ownership or auth-linked identity lookups in function handlers.
+
+## Query/mutation authorization pattern
+
+`convex/tasks.ts` enforces identity in every public function:
+
+```ts
+export const list = query({
+  args: {
+    status: v.optional(
+      v.union(
+        v.literal("pending"),
+        v.literal("in progress"),
+        v.literal("completed"),
+        v.literal("cancelled"),
+      ),
+    ),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    let tasks = await ctx.db
+      .query("tasks")
+      .withIndex("by_user", (q) => q.eq("userId", identity.subject))
+      .collect();
+
+    if (args.status) {
+      tasks = tasks.filter((task) => task.status === args.status);
+    }
+
+    return tasks.sort((a, b) => b.createdAt - a.createdAt);
+  },
+});
+```
+
+## Internal workflow via scheduler
+
+State transitions trigger async follow-up jobs. Example from `convex/tasks.ts`:
+
+```ts
+if (!wasCompleted && isNowCompleted) {
+  await ctx.scheduler.runAfter(0, internal.notifications.createNotification, {
+    userId: identity.subject,
+    type: "task_completed",
+    title: "Task Completed",
+    message: `You completed the task: ${args.title ?? task.title}`,
+  });
+}
+```
+
+This keeps mutation latency low and isolates side effects.
+
+## HTTP surface + auth + Polar registration
+
+`convex/http.ts` exposes non-Convex-client entry points:
+
+```ts
+const http = httpRouter();
+
+authComponent.registerRoutes(http, createAuth);
+polar.registerRoutes(http);
+
+export default http;
+```
+
+Auth routes are wrapped with IP-based rate limiting for sensitive paths:
+
+```ts
+const RATE_LIMITED_PATHS = [
+  "/api/auth/sign-in/email",
+  "/api/auth/sign-up/email",
+  "/api/auth/forget-password",
+  "/api/auth/reset-password",
+];
+```
+
+## Polar function exports
+
+`convex/polar.ts` exposes billing operations directly:
+
+```ts
+export const {
+  changeCurrentSubscription,
+  cancelCurrentSubscription,
+  getConfiguredProducts,
+  listAllProducts,
+  listAllSubscriptions,
+  generateCheckoutLink,
+  generateCustomerPortalUrl,
+} = polar.api();
+```
+
+These functions are the canonical data-layer interface for subscription lifecycle.
+
+## Verification commands
+
+```bash
+bunx convex codegen
+bun run test convex/features/email/config.test.ts
+bun run test convex/features/email/betterAuth.test.ts
+bun run typecheck
+```

@@ -1,0 +1,169 @@
+# Troubleshooting and Runbooks
+
+Operational runbooks for common FluxKit failures.
+
+## Runbook: Convex URL/auth boot failures
+
+### Symptoms
+
+- App fails during render/provider initialization.
+- Auth helpers fail to fetch tokens.
+
+### Primary checks
+
+`src/lib/auth/server.ts` and `src/components/providers/ConvexClientProvider.tsx` both hard-require `NEXT_PUBLIC_CONVEX_URL`:
+
+```ts
+convexUrl: process.env.NEXT_PUBLIC_CONVEX_URL!,
+convexSiteUrl: process.env.NEXT_PUBLIC_CONVEX_SITE_URL!,
+
+const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
+```
+
+### Recovery steps
+
+```bash
+bunx convex dev
+bunx convex env list
+bun run typecheck
+```
+
+If values are missing in host deployment, set them and redeploy.
+
+## Runbook: Better Auth callback/session errors
+
+### Symptoms
+
+- Sign-in links redirect to wrong host.
+- OAuth callback mismatch.
+- Session creation fails unexpectedly.
+
+### Primary checks
+
+`convex/features/auth/auth.ts` uses:
+
+```ts
+baseURL: process.env.SITE_URL ?? process.env.NEXT_PUBLIC_SITE_URL,
+secret: process.env.BETTER_AUTH_SECRET,
+socialProviders: {
+  google: {
+    clientId: process.env.GOOGLE_CLIENT_ID!,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+  },
+},
+```
+
+### Recovery steps
+
+```bash
+bunx convex env list
+bunx convex dev
+bun run dev
+```
+
+Ensure `SITE_URL` exactly matches the deployed domain and OAuth console redirect URLs.
+
+## Runbook: Auth endpoint 429 rate limiting
+
+### Symptoms
+
+- Auth endpoints return HTTP 429 with `Too many requests`.
+
+### Primary checks
+
+`convex/http.ts` wraps auth routes:
+
+```ts
+const RATE_LIMITED_PATHS = [
+  "/api/auth/sign-in/email",
+  "/api/auth/sign-up/email",
+  "/api/auth/forget-password",
+  "/api/auth/reset-password",
+];
+```
+
+`convex/features/rateLimit.ts` configures the limiter:
+
+```ts
+export const authLimiter = redis
+  ? new Ratelimit({
+      redis,
+      limiter: Ratelimit.slidingWindow(5, "15 m"),
+      analytics: true,
+      prefix: "ratelimit:auth",
+    })
+  : null;
+```
+
+### Recovery steps
+
+```bash
+bunx convex env list
+for i in {1..7}; do curl -i -X POST http://localhost:3000/api/auth/sign-in/email; done
+```
+
+If Redis env is unset, limiter is disabled by design.
+
+## Runbook: Polar checkout/subscription failures
+
+### Symptoms
+
+- Checkout link generation fails.
+- Product lookup returns placeholders.
+
+### Primary checks
+
+`convex/polar.ts` defaults missing IDs to placeholders:
+
+```ts
+const POLAR_PRO_PRODUCT_ID =
+  process.env.POLAR_PRO_PRODUCT_ID ?? "polar_pro_product_id_placeholder";
+const POLAR_TEAMS_PRODUCT_ID =
+  process.env.POLAR_TEAMS_PRODUCT_ID ?? "polar_teams_product_id_placeholder";
+```
+
+### Recovery steps
+
+```bash
+bunx convex env list
+bunx convex deploy
+```
+
+Set real Polar product IDs and redeploy Convex before testing billing UI.
+
+## Runbook: Email delivery and template failures
+
+### Symptoms
+
+- Verification/reset/invite emails not sent.
+- Brevo template ID parsing errors.
+
+### Primary checks
+
+`convex/features/email/config.ts` throws for missing/invalid env:
+
+```ts
+if (!value) {
+  throw { code: "missing_env", field, value: "" } as EmailConfigError;
+}
+
+if (!Number.isInteger(templateId)) {
+  throw { code: "invalid_template_id", field, value } as EmailConfigError;
+}
+```
+
+### Recovery steps
+
+```bash
+bun run test convex/features/email/config.test.ts
+bun run test convex/features/email/betterAuth.test.ts
+```
+
+## Incident Close-Out Commands
+
+```bash
+bun run lint
+bun run typecheck
+bun run test
+bun run build
+```

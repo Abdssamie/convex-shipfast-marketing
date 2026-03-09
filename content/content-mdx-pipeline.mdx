@@ -1,0 +1,160 @@
+# Content and MDX Pipeline
+
+How FluxKit docs are hosted and maintained.
+
+## Scope and Responsibilities
+
+```text
+Docs route runtime: app/docs/*
+Docs content files: content/*.mdx
+
+Code paths: src/app, src/components, src/hooks, src/contexts, src/app/globals.css, convex/*
+```
+
+Operational model:
+
+1. Application behavior lives in `src/` and `convex/`.
+2. Docs pages live in `content/*.mdx`.
+3. Docs include code examples copied from source files with exact paths.
+
+## Docs Hosting Pipeline
+
+Nextra mounts docs under `/docs`.
+
+### Nextra + Next config
+
+```js
+// next.config.mjs
+import nextra from "nextra";
+
+const withNextra = nextra({
+  contentDirBasePath: "/docs",
+  search: true,
+});
+
+const nextConfig = {
+  turbopack: {
+    resolveAlias: {
+      "next-mdx-import-source-file": "./mdx-components.tsx",
+    },
+  },
+};
+
+export default withNextra(nextConfig);
+```
+
+### MDX component binding
+
+```tsx
+// mdx-components.tsx
+import type { MDXComponents } from "nextra/mdx-components";
+import { useMDXComponents as getThemeComponents } from "nextra-theme-docs";
+
+const mdxComponents: MDXComponents = {};
+
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+  return getThemeComponents({
+    ...mdxComponents,
+    ...components,
+  });
+}
+```
+
+### Route loading for docs content
+
+```tsx
+// app/docs/[[...mdxPath]]/page.tsx
+import { generateStaticParamsFor, importPage } from "nextra/pages";
+import { Fragment } from "react";
+
+import { useMDXComponents as getMDXComponents } from "@/mdx-components";
+
+export const generateStaticParams = generateStaticParamsFor("mdxPath");
+
+const Wrapper = getMDXComponents({}).wrapper ?? Fragment;
+
+export default async function DocsCatchAllPage(props: {
+  params: Promise<{ mdxPath?: string[] }>;
+}) {
+  const params = await props.params;
+  const result = await importPage(params.mdxPath);
+  const { default: MDXContent, metadata, sourceCode, toc } = result;
+
+  return (
+    <Wrapper toc={toc} metadata={metadata} sourceCode={sourceCode}>
+      <MDXContent {...props} params={params} />
+    </Wrapper>
+  );
+}
+```
+
+## Mapping (Application -> Docs)
+
+Use this mapping to keep docs synchronized with the codebase.
+
+```text
+Application path family                         -> Docs page(s)
+src/app/layout.tsx                              -> /docs/system-architecture, /docs/ui-component-architecture
+src/app/(dashboard)/* + src/components/app-*   -> /docs/routing-rendering, /docs/ui-component-architecture
+src/components/ui/*                             -> /docs/ui-component-architecture, /docs/styling-design-tokens
+src/hooks/* + src/contexts/*                    -> /docs/ui-component-architecture, /docs/system-architecture
+src/app/globals.css                             -> /docs/styling-design-tokens
+convex/*                                        -> /docs/data-layer-convex
+```
+
+Conventions:
+
+- Every architectural claim should be traceable to a file in the codebase.
+- Prefer short, exact snippets over paraphrase.
+- Keep examples copied from source and annotate with path comments.
+
+## Example: Pulling an Application Snippet Into Docs
+
+````mdx
+```tsx
+// Source: src/app/layout.tsx
+import { ThemeProvider } from "@/components/theme-provider";
+import { SidebarConfigProvider } from "@/contexts/sidebar-context";
+
+<ThemeProvider defaultTheme="system" storageKey="nextjs-ui-theme">
+  <SidebarConfigProvider>{children}</SidebarConfigProvider>
+</ThemeProvider>;
+```
+````
+
+This keeps docs grounded in shipped implementation.
+
+## URL and Navigation Conventions
+
+Nextra content files in `content/*.mdx` are exposed at `/docs/<slug>`.
+
+Examples:
+
+```text
+content/ui-component-architecture.mdx -> /docs/ui-component-architecture
+content/content-mdx-pipeline.mdx      -> /docs/content-mdx-pipeline
+content/styling-design-tokens.mdx     -> /docs/styling-design-tokens
+```
+
+`content/index.mdx` acts as the docs index and should link to every major page.
+
+## Authoring Conventions
+
+1. Docs are in `content/*.mdx`; runtime facts are in the codebase.
+2. Include path-qualified code references in each docs page.
+3. Explain dependency direction explicitly (what can import what).
+4. When application code changes, docs PR should update affected mapping rows.
+5. Treat docs updates as part of feature completion.
+
+## Update Workflow
+
+```bash
+bun run dev
+```
+
+## Quality Bar for MDX Pipeline Docs
+
+- Accurate route/path mapping (`content/*.mdx` -> `/docs/*`).
+- Code snippets are current and compile-valid in context.
+- No invented APIs: snippets should match source exactly or be clearly labeled as abbreviated.
+- Pipeline docs explain both hosting mechanics and ownership of code examples.

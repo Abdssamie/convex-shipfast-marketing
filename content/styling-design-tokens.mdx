@@ -1,0 +1,266 @@
+# Styling and Design Tokens
+
+FluxKit token system, Tailwind token flow, and safe extension conventions.
+
+## Token Architecture
+
+```text
+Token source:      src/app/globals.css
+Semantic aliases:  @theme inline -> --color-* mapped to --* base vars
+Theme state:       .dark class on <html> (set by ThemeProvider)
+Consumption:       Tailwind utility classes in src/components and src/app
+Runtime overrides: use-theme-manager hook writes CSS vars on documentElement
+```
+
+Dependency direction for styling:
+
+```text
+globals.css variables
+  -> semantic utility classes (bg-background, text-foreground, border-border, ...)
+    -> ui primitives (src/components/ui/*)
+      -> application components (src/components/*)
+        -> route composition (src/app/*)
+```
+
+## Core Token Definitions in `src/app/globals.css`
+
+The file defines:
+
+1. Base CSS variables (`:root`) for light mode.
+2. Dark-mode overrides under `.dark`.
+3. Tailwind `@theme inline` semantic aliases (`--color-*`, `--radius-*`).
+
+### Semantic alias layer
+
+```css
+@theme inline {
+  --font-sans: var(--font-inter);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+}
+```
+
+### Light/dark token values (excerpt)
+
+```css
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --border: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --ring: oklch(0.556 0 0);
+}
+```
+
+Convention: define raw values once (`--background`, `--primary`, etc.), then consume semantic utility classes in components.
+
+## Theme Activation via Provider
+
+`ThemeProvider` toggles the `dark` or `light` class on `document.documentElement`, which activates token set selection in `globals.css`.
+
+```tsx
+"use client";
+
+import * as React from "react";
+import { ThemeProviderContext } from "@/contexts/theme-context";
+
+export function ThemeProvider({
+  children,
+  defaultTheme = "system",
+  storageKey = "vite-ui-theme",
+}: {
+  children: React.ReactNode;
+  defaultTheme?: "dark" | "light" | "system";
+  storageKey?: string;
+}) {
+  const [theme, setTheme] = React.useState(
+    () =>
+      (typeof window !== "undefined" &&
+        (localStorage.getItem(storageKey) as "dark" | "light" | "system")) ||
+      defaultTheme,
+  );
+
+  React.useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove("light", "dark");
+    if (theme === "system") {
+      root.classList.add(
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light",
+      );
+      return;
+    }
+    root.classList.add(theme);
+  }, [theme]);
+
+  return (
+    <ThemeProviderContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeProviderContext.Provider>
+  );
+}
+```
+
+## How Components Consume Tokens
+
+Primitives consume semantic tokens through Tailwind classes, never raw color values.
+
+### Example: button token consumption
+
+```tsx
+const buttonVariants = cva("inline-flex items-center justify-center", {
+  variants: {
+    variant: {
+      default:
+        "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
+      outline:
+        "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground",
+    },
+  },
+});
+```
+
+### Example: card token consumption
+
+```tsx
+function Card({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card"
+      className={cn(
+        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+```
+
+Convention: prefer token-backed utility classes (`bg-card`, `text-muted-foreground`) over arbitrary color literals in JSX.
+
+## Runtime Token Overrides (`useThemeManager`)
+
+For custom theming, `useThemeManager` can reset and reapply CSS variables directly on `document.documentElement`.
+
+```tsx
+const applyTheme = React.useCallback(
+  (themeValue: string, darkMode: boolean) => {
+    const theme = colorThemes.find((t) => t.value === themeValue);
+    if (!theme) return;
+
+    resetTheme();
+    const styles = darkMode
+      ? theme.preset.styles.dark
+      : theme.preset.styles.light;
+    const root = document.documentElement;
+
+    Object.entries(styles).forEach(([key, value]) => {
+      root.style.setProperty(`--${key}`, value);
+    });
+  },
+  [resetTheme],
+);
+```
+
+Key convention: reset before apply to avoid stale variables leaking between presets.
+
+## Layout-Level Styling Contracts
+
+App layout and dashboard layout rely on global semantic classes and CSS variable contracts.
+
+```tsx
+// src/app/layout.tsx
+<html
+  lang="en"
+  className={`${inter.variable} antialiased`}
+  suppressHydrationWarning
+>
+  <body className={inter.className}>{children}</body>
+</html>
+```
+
+```tsx
+// src/app/(dashboard)/layout.tsx
+<SidebarProvider
+  style={
+    {
+      "--sidebar-width": "16rem",
+      "--sidebar-width-icon": "3rem",
+      "--header-height": "calc(var(--spacing) * 14)",
+    } as React.CSSProperties
+  }
+  className={config.collapsible === "none" ? "sidebar-none-mode" : ""}
+>
+  {children}
+</SidebarProvider>
+```
+
+`globals.css` includes targeted fixes tied to these contracts, e.g. `.sidebar-none-mode` and right-side inset margin behavior.
+
+## Token Conventions
+
+1. Add new global tokens in `src/app/globals.css` only.
+2. If token needs Tailwind utility support, map it in `@theme inline`.
+3. Consume via semantic class names in components (`bg-*`, `text-*`, `border-*`).
+4. Keep dark mode parity by defining both `:root` and `.dark` values.
+5. Use runtime overrides sparingly and through centralized hooks (`useThemeManager`).
+
+## Example: Adding a New Semantic Token
+
+```css
+/* 1) globals.css */
+:root {
+  --warning: oklch(0.82 0.16 82);
+  --warning-foreground: oklch(0.2 0.03 82);
+}
+
+.dark {
+  --warning: oklch(0.72 0.14 82);
+  --warning-foreground: oklch(0.97 0.02 82);
+}
+
+@theme inline {
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+}
+```
+
+```tsx
+// 2) component usage
+<div className="bg-warning text-warning-foreground rounded-md p-3">
+  Plan needs attention
+</div>
+```
+
+## Common Pitfalls to Avoid
+
+- Hardcoding raw color values in component class strings.
+- Updating only light tokens and forgetting `.dark` parity.
+- Adding one-off inline styles where a semantic token should exist.
+- Creating feature-local CSS variables that should be global design tokens.

@@ -1,26 +1,33 @@
-# FluxKit Buyer Guide
+# FluxKit Documentation
 
-This docs section is for evaluating FluxKit before purchase and onboarding quickly after purchase.
+Technical docs for the FluxKit application and codebase.
 
-## What this docs set is based on
+## Code Layout
 
-- The current marketing site messaging and feature sections.
-- The current pricing, FAQ, and build-vs-buy positioning.
-- The implementation scope shown in this repository's public product narrative.
+```text
+Application code: src/
+Backend code: convex/
+```
 
-## Best reading order
+## Docs Index
 
-- [Overview](/docs/overview)
-- [Feature Tour](/docs/feature-tour)
-- [Build vs Buy](/docs/build-vs-buy)
-- [Getting Started](/docs/getting-started)
-- [Customization](/docs/customization)
-- [Deployment](/docs/deployment)
-- [Licensing](/docs/licensing)
-- [FAQ](/docs/faq)
+1. [System Architecture](/docs/system-architecture)
+2. [Codebase Map](/docs/codebase-map)
+3. [Routing and Rendering](/docs/routing-rendering)
+4. [UI Component Architecture](/docs/ui-component-architecture)
+5. [Content and MDX Pipeline](/docs/content-mdx-pipeline)
+6. [Configuration and Environment](/docs/configuration-environment)
+7. [Data Layer (Convex)](/docs/data-layer-convex)
+8. [SEO, Metadata, and Performance](/docs/seo-metadata-performance)
+9. [Styling and Design Tokens](/docs/styling-design-tokens)
+10. [Build, Lint, and Deployment](/docs/build-lint-deployment)
+11. [Troubleshooting and Runbooks](/docs/troubleshooting-runbooks)
 
-## Quick actions
+## Verification commands
 
-- Compare plans: [Pricing](/#pricing)
-- Revisit product page: [Landing](/)
-- Review legal terms: [License](/license)
+```bash
+bun run lint
+bun run typecheck
+bun run test
+bun run build
+```
