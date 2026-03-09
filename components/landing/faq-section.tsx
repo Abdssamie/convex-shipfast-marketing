@@ -61,6 +61,21 @@ const faqs = [
       </>
     ),
   },
+  {
+    q: "How can I contact support?",
+    a: (
+      <>
+        Email support at{" "}
+        <Link
+          href="mailto:abdessamie.elmoubarki@gmail.com"
+          className="text-foreground underline"
+        >
+          abdessamie.elmoubarki@gmail.com
+        </Link>
+        .
+      </>
+    ),
+  },
 ];
 
 export function FaqSection() {
