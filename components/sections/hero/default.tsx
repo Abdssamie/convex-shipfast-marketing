@@ -66,7 +66,7 @@ export default function Hero({
     >
       <div className="max-w-container mx-auto flex flex-col gap-12 pt-4 sm:gap-24">
         <div className="flex flex-col items-center gap-5 text-center sm:gap-8">
-          <LimitedOfferPill currentPrice={135} originalPrice={165} />
+          <LimitedOfferPill currentPrice={135} originalPrice={200} />
           <h1 className="animate-appear relative z-10 text-4xl leading-tight font-semibold text-balance drop-shadow-2xl sm:text-6xl sm:leading-tight md:text-8xl md:leading-tight">
             {title ? (
               title

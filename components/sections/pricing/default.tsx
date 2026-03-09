@@ -22,7 +22,7 @@ export default function Pricing({
       icon: <SparklesIcon className="size-4" />,
       description: "Single-user commercial license with lifetime updates.",
       price: 135,
-      originalPrice: 165,
+      originalPrice: 200,
       promotionText: "One-time license",
       priceNote: "One-time payment. Delivered via Gumroad.",
       cta: {

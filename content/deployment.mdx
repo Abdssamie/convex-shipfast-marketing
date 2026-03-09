@@ -1,0 +1,42 @@
+# Deployment
+
+FluxKit marketing and docs deploy as a standard Next.js app.
+
+## Production readiness checklist
+
+- Set production `SITE_URL` and `NEXT_PUBLIC_SITE_URL`.
+- Set checkout and demo URLs used by pricing buttons.
+- Verify docs route and legal routes are public and crawlable.
+- Confirm Open Graph and metadata values match your brand.
+
+## Deployment sequence
+
+1. Set environment variables in your host (for example, Vercel).
+2. Deploy Next.js app.
+3. Run post-deploy smoke checks for landing, docs, and pricing links.
+4. Validate legal pages and support contacts.
+
+## Smoke test list
+
+- Landing sections render and CTA buttons resolve.
+- `/docs` sidebar nav works across all docs pages.
+- `/#pricing` checkout flow opens the intended target.
+- `/license`, `/terms`, and `/privacy` are accessible.
+- Support contact links open correctly.
+
+## Disclosure: what deployment does not auto-solve
+
+- Offer-market fit and conversion messaging still require iteration.
+- Legal/compliance review remains your responsibility.
+- External checkout provider uptime is outside this codebase.
+
+## Recommended go-live gate
+
+Require a single shared sign-off checklist covering:
+
+- security and secrets
+- docs routes
+- checkout links
+- legal pages and policy links
+
+Then publish publicly.

@@ -1,0 +1,48 @@
+# Customization
+
+Customize fast, while keeping your docs and landing conversion flow clear.
+
+## Safe customization zones
+
+- Product positioning and copy across landing and docs.
+- Design system tokens, component styling, and visual brand language.
+- Pricing CTAs, offer framing, and FAQ objection handling.
+- Navigation and docs information architecture.
+
+## Boundary map (recommended)
+
+### Keep stable unless necessary
+
+- `app/docs/[[...mdxPath]]/page.tsx` Nextra catch-all route.
+- `app/docs/layout.tsx` docs layout wiring.
+- `content/docs/_meta.js` docs navigation keys.
+
+### Extend around these boundaries
+
+- Add or refine docs pages in `content/docs/*.mdx`.
+- Update landing section copy in `components/landing/*`.
+- Adjust pricing/support links in `config/site.ts` and environment vars.
+
+## Messaging integrity checklist
+
+- Keep claims aligned with what is visible in this project.
+- Avoid adding technical claims that are not represented in current code and copy.
+- Keep build-vs-buy numbers and pricing narrative consistent across sections.
+
+## Practical customization checklist
+
+- Replace brand name, legal identity, support channels.
+- Align plans, pricing labels, and entitlement language with your offer.
+- Update docs CTA links so they point to your active purchase flow.
+- Update screenshots/media if your offer positioning changes.
+
+## Change-management tip for teams
+
+Create a short `do-not-break` doc for:
+
+- docs route structure
+- landing CTA targets
+- legal page paths
+- pricing section consistency
+
+Then treat those as test gates during product iteration.

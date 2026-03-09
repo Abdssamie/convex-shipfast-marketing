@@ -46,10 +46,13 @@ export function LimitedOfferPill({
     return () => window.clearInterval(intervalId);
   }, []);
 
-  const savings = useMemo(
-    () => Math.max(0, originalPrice - currentPrice),
-    [currentPrice, originalPrice],
-  );
+  const discountPercentage = useMemo(() => {
+    if (originalPrice <= 0 || currentPrice >= originalPrice) {
+      return 0;
+    }
+
+    return Math.round(((originalPrice - currentPrice) / originalPrice) * 100);
+  }, [currentPrice, originalPrice]);
   const time = useMemo(() => getTimeParts(remainingMs), [remainingMs]);
 
   return (
@@ -59,7 +62,7 @@ export function LimitedOfferPill({
       <span className="text-foreground font-semibold">${currentPrice}</span>
       <span>one-time</span>
       <span className="opacity-60">•</span>
-      <span>${savings} off</span>
+      <span>{discountPercentage}% off</span>
       <span className="opacity-60">•</span>
       <span className="inline-flex items-center gap-2">
         <TimeUnit value={pad2(time.days)} label="d" />
