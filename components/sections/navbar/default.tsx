@@ -66,16 +66,20 @@ export default function Navbar({
     <header className={cn("sticky top-0 z-50 -mb-4 px-4 pb-4", className)}>
       <div className="fade-bottom bg-background/15 absolute left-0 h-24 w-full backdrop-blur-lg"></div>
       <div className="max-w-container relative mx-auto">
-        <NavbarComponent>
-          <NavbarLeft>
+        <NavbarComponent className="relative">
+          <NavbarLeft className="gap-6 md:gap-10">
             <a
               href={homeUrl}
-              className="flex items-center gap-2 text-xl font-bold"
+              className="flex items-center gap-2 text-xl font-semibold"
             >
               {logo}
               {name}
             </a>
-            {showNavigation && (customNavigation || <Navigation />)}
+            {showNavigation && (
+              <div className="pl-1 md:pl-3">
+                {customNavigation || <Navigation />}
+              </div>
+            )}
           </NavbarLeft>
           <NavbarRight>
             {actions.map((action, index) =>
@@ -95,7 +99,7 @@ export default function Navbar({
                 <a
                   key={index}
                   href={action.href}
-                  className="hidden text-sm md:block"
+                  className="hidden text-sm font-medium md:block"
                 >
                   {action.text}
                 </a>

@@ -1,4 +1,3 @@
-import BentoSection from "../components/landing/bento-section";
 import { BuildVsBuy } from "../components/landing/build-vs-buy";
 import { FaqSection } from "../components/landing/faq-section";
 import { FeatureCatalog } from "../components/landing/feature-catalog";
@@ -16,7 +15,6 @@ export default function Home() {
       <Navbar />
       <Hero />
       <TechStackStrip />
-      <BentoSection />
       <FeatureShowcase />
       <FeatureCatalog />
       <BuildVsBuy />

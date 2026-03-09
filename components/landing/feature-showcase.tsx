@@ -29,20 +29,19 @@ const showcaseData = {
       highlight: "Landing page",
       media: {
         type: "image",
-        src: "/landing-page-preview.png",
-        alt: "Landing page preview",
+        src: "/landing-page-hero.png",
+        alt: "Landing page hero preview",
       },
     },
     {
       id: "dashboard",
       title: "Dashboard and settings screens already framed",
       description:
-        "The app shell includes dashboard navigation, profile settings, account areas, and billing-oriented surfaces, so the authenticated product already looks like a real SaaS.",
+        "The app shell includes dashboard navigation, profile/account/billing settings, plus tasks, calendar, mail, chat, and users modules so the authenticated product already feels complete.",
       highlight: "Dashboard features",
       media: {
-        type: "image",
-        src: "/dashboard-preview.png",
-        alt: "Dashboard settings preview",
+        type: "video",
+        src: "/dashboard-showcase.mp4",
       },
     },
     {

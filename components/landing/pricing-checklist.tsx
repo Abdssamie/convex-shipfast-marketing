@@ -7,7 +7,10 @@ export function PricingChecklist() {
     const businessChecks = [
         "Organizations, invitations, and role support",
         "Advanced dashboard and productivity modules",
+        "Polar checkout and customer portal wiring",
+        "Better Auth flows (OAuth, magic links, reset)",
         "Realtime notifications and data patterns",
+        "Brevo or Resend transactional email support",
         "Analytics + monitoring + rate limiting",
         "Commercial license with lifetime updates",
         "Unlimited project usage",

@@ -46,6 +46,17 @@ export function TechStackStrip() {
             version: "latest",
             icon: "https://cdn.simpleicons.org/bun/f9f1e1",
         },
+        {
+            name: "Brevo",
+            version: "Email",
+            icon: "https://cdn.simpleicons.org/brevo",
+        },
+        {
+            name: "Resend",
+            version: "Email API",
+            icon: "https://cdn.simpleicons.org/resend",
+            invertOnDark: true,
+        },
     ];
 
     return (

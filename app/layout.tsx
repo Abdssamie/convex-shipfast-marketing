@@ -57,8 +57,12 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
   },
   icons: {
-    icon: "/fluxkit.png",
-    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/fluxkit.png?v=20260309", type: "image/png" },
+      { url: "/favicon.svg?v=20260309", type: "image/svg+xml" },
+    ],
+    shortcut: "/fluxkit.png?v=20260309",
+    apple: "/apple-touch-icon.png?v=20260309",
   },
 };
 

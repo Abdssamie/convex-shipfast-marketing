@@ -1,16 +1,16 @@
 import { type VariantProps } from "class-variance-authority";
-import { ChevronRightIcon } from "lucide-react";
+import { ArrowRightIcon, ExternalLinkIcon } from "lucide-react";
 import { ReactNode } from "react";
 
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import { Badge } from "../../ui/badge";
 import { Button, buttonVariants } from "../../ui/button";
 import Glow from "../../ui/glow";
 import { Mockup, MockupFrame } from "../../ui/mockup";
 import Screenshot from "../../ui/screenshot";
 import { Section } from "../../ui/section";
+import { LimitedOfferPill } from "./limited-offer-pill";
 
 interface HeroButtonProps {
   href: string;
@@ -24,7 +24,6 @@ interface HeroProps {
   title?: string;
   description?: string;
   mockup?: ReactNode | false;
-  badge?: ReactNode | false;
   buttons?: HeroButtonProps[] | false;
   className?: string;
 }
@@ -34,40 +33,26 @@ export default function Hero({
   description = "A production-ready SaaS starter with a polished landing page, finished dashboard shell, and the core product surfaces already in place.",
   mockup = (
     <Screenshot
-      srcLight="/dashboard-light.png"
-      srcDark="/dashboard-dark.png"
+      srcLight="/dashboard-preview-light.png"
+      srcDark="/dashboard-preview-dark.png"
       alt="FluxKit dashboard screenshot"
       width={1248}
       height={765}
       className="w-full"
     />
   ),
-  badge = (
-    <Badge
-      variant="outline"
-      className="animate-appear group hover:border-primary/50 bg-background flex cursor-pointer items-center gap-3 rounded-full p-1 pr-2 text-xs shadow-sm transition-colors"
-    >
-      <span className="bg-foreground text-background my-0.5 ml-0.5 rounded-full px-2 py-1 text-xs font-semibold">
-        New
-      </span>
-      <span className="text-muted-foreground font-semibold">
-        Premium SaaS starter for founders, agencies, and product teams.
-      </span>
-      <div className="ml-1 flex items-center justify-center rounded-full bg-black/5 p-1 dark:bg-white/10">
-        <ChevronRightIcon className="text-foreground size-3 transition-transform group-hover:translate-x-0.5" />
-      </div>
-    </Badge>
-  ),
   buttons = [
     {
       href: siteConfig.getStartedUrl,
-      text: "Get Started",
+      text: "Get FluxKit - $99",
       variant: "default",
+      iconRight: <ArrowRightIcon className="size-4" />,
     },
     {
       href: siteConfig.demoUrl,
-      text: "Show Demo",
+      text: "View Live Demo",
       variant: "outline",
+      iconRight: <ExternalLinkIcon className="size-4" />,
     },
   ],
   className,
@@ -81,7 +66,7 @@ export default function Hero({
     >
       <div className="max-w-container mx-auto flex flex-col gap-12 pt-4 sm:gap-24">
         <div className="flex flex-col items-center gap-5 text-center sm:gap-8">
-          {badge !== false && badge}
+          <LimitedOfferPill currentPrice={99} originalPrice={129} />
           <h1 className="animate-appear relative z-10 text-4xl leading-tight font-semibold text-balance drop-shadow-2xl sm:text-6xl sm:leading-tight md:text-8xl md:leading-tight">
             {title ? (
               title
@@ -95,7 +80,7 @@ export default function Hero({
               </>
             )}
           </h1>
-          <p className="text-md animate-appear relative z-10 max-w-[740px] leading-relaxed font-medium text-balance text-slate-500 opacity-0 delay-100 sm:text-xl dark:text-slate-300">
+          <p className="text-md animate-appear relative z-10 max-w-[740px] leading-relaxed font-semibold text-balance text-slate-500 opacity-0 delay-100 sm:text-xl dark:text-slate-300">
             {description}
           </p>
           {buttons !== false && buttons.length > 0 && (
@@ -113,10 +98,12 @@ export default function Hero({
                     )}
                     asChild
                   >
-                    <a href={button.href}>
-                      {button.icon}
-                      {button.text}
-                      {button.iconRight}
+                    <a href={button.href} className="inline-flex items-center gap-2">
+                      {button.icon && <span className="shrink-0">{button.icon}</span>}
+                      <span>{button.text}</span>
+                      {button.iconRight && (
+                        <span className="shrink-0">{button.iconRight}</span>
+                      )}
                     </a>
                   </Button>
                 ))}

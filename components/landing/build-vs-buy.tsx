@@ -5,11 +5,11 @@ import { Container } from "./container";
 
 export function BuildVsBuy() {
     const rows = [
-        ["Auth + recovery + verification", "2-3 weeks", "Included"],
-        ["Pricing + billing UI foundations", "1-2 weeks", "Included"],
-        ["Organizations + permissions", "3-4 weeks", "Included"],
+        ["Auth (email + OAuth + magic links)", "2-3 weeks", "Included"],
+        ["Billing (Polar checkout + portal + webhooks)", "1-2 weeks", "Included"],
+        ["Organizations, invitations, and roles", "3-4 weeks", "Included"],
         ["Realtime backend + notifications", "2-3 weeks", "Included"],
-        ["Ops stack (monitoring + rate limiting)", "1-2 weeks", "Included"],
+        ["Ops + email providers (Sentry, Upstash, Brevo/Resend)", "1-2 weeks", "Included"],
     ];
 
     return (
