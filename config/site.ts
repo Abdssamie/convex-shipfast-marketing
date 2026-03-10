@@ -1,4 +1,4 @@
-const productionUrl = "https://flux-kut.dev";
+const productionUrl = "https://flux-kit.dev";
 const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? process.env.VERCEL_PROJECT_PRODUCTION_URL.startsWith("http")
     ? process.env.VERCEL_PROJECT_PRODUCTION_URL
@@ -34,12 +34,12 @@ export const siteConfig = {
   getStartedUrl: proCheckoutUrl,
   docsUrl: "/docs",
   demoUrl,
-  ogImage: `${siteUrl}/og.jpg`,
+  ogImage: `${siteUrl}/landing-page-preview.png`,
   description:
     "Production-ready SaaS starter kit with authentication, teams, dashboard foundations, and real-time features. Built with Next.js, Convex, and TypeScript.",
   links: {
     github: "https://github.com/fluxkit-hq/fluxkit",
-    email: "mailto:hello@flux-kut.dev",
+    email: "mailto:hello@flux-kit.dev",
   },
   pricing: {
     pro: proCheckoutUrl,
