@@ -98,8 +98,13 @@ export default function Hero({
                     )}
                     asChild
                   >
-                    <a href={button.href} className="inline-flex items-center gap-2">
-                      {button.icon && <span className="shrink-0">{button.icon}</span>}
+                    <a
+                      href={button.href}
+                      className="inline-flex items-center gap-2"
+                    >
+                      {button.icon && (
+                        <span className="shrink-0">{button.icon}</span>
+                      )}
                       <span>{button.text}</span>
                       {button.iconRight && (
                         <span className="shrink-0">{button.iconRight}</span>
@@ -108,6 +113,20 @@ export default function Hero({
                   </Button>
                 ))}
               </div>
+              <a
+                href="https://www.producthunt.com/products/fluxkit?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-fluxkit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex"
+              >
+                <img
+                  alt="FluxKit - Skip the Boilerplate, Ship This Weekend | Product Hunt"
+                  width="250"
+                  height="54"
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1094116&theme=light&t=1773122698823"
+                  className="h-auto max-w-full"
+                />
+              </a>
             </div>
           )}
           {mockup !== false && (
