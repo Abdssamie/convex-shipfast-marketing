@@ -46,7 +46,7 @@ export default function Pricing({
       name: "Teams",
       icon: <BriefcaseBusinessIcon className="size-4" />,
       description: "Multi-seat internal team license with priority support.",
-      price: 249,
+      price: 90,
       originalPrice: 349,
       promotionText: "Team license",
       priceNote: "One-time payment. Delivered via Gumroad.",
@@ -127,7 +127,9 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Organizations and role support</td>
+                    <td className="p-4 text-sm">
+                      Organizations and role support
+                    </td>
                     <td className="p-4 text-center">
                       <Check className="text-muted-foreground mx-auto size-5" />
                     </td>
@@ -136,7 +138,9 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Convex backend and realtime foundation</td>
+                    <td className="p-4 text-sm">
+                      Convex backend and realtime foundation
+                    </td>
                     <td className="p-4 text-center">
                       <Check className="text-muted-foreground mx-auto size-5" />
                     </td>
@@ -154,7 +158,9 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Landing page and dashboard shell</td>
+                    <td className="p-4 text-sm">
+                      Landing page and dashboard shell
+                    </td>
                     <td className="p-4 text-center">
                       <Check className="text-muted-foreground mx-auto size-5" />
                     </td>
@@ -163,7 +169,9 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Commercial license and lifetime updates</td>
+                    <td className="p-4 text-sm">
+                      Commercial license and lifetime updates
+                    </td>
                     <td className="p-4 text-center">
                       <Check className="text-muted-foreground mx-auto size-5" />
                     </td>
@@ -172,7 +180,9 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Team-friendly commercial usage</td>
+                    <td className="p-4 text-sm">
+                      Team-friendly commercial usage
+                    </td>
                     <td className="p-4 text-center">
                       <X className="text-muted-foreground/30 mx-auto size-5" />
                     </td>
@@ -190,7 +200,9 @@ export default function Pricing({
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-sm">Multi-seat internal team access</td>
+                    <td className="p-4 text-sm">
+                      Multi-seat internal team access
+                    </td>
                     <td className="p-4 text-center">
                       <X className="text-muted-foreground/30 mx-auto size-5" />
                     </td>
